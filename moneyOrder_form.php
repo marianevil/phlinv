@@ -13,10 +13,17 @@ include 'header.php';
         </div>
 
         <div class="form-row five-col stamp-row">
-            <div class="input-group">
-                <label>Deno:</label>
-                <input type="text" placeholder=" ">
-            </div>
+    <div class="input-group">
+        <label>Deno:</label>
+        <select name="deno">
+            <option value="" selected hidden>Select Deno</option>
+            <option>1.00</option>
+            <option>5.00</option>
+            <option>10.00</option>
+            <option>20.00</option>
+            <option>50.00</option>
+        </select>
+    </div>
             <div class="input-group">
                 <label>Quantity (pcs):</label>
                 <input type="text" placeholder=" ">

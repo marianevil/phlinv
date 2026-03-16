@@ -4,15 +4,13 @@ if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit();
 }
-
-$username = $_SESSION['user'];
 ?>
 
-<?php include 'header.php'; ?>
+<?php include 'admin_header.php'; ?>
 
 <main class="content dashboard-bg">
     <div class="center-text">
-        <h1>Welcome back, <?php echo htmlspecialchars($username); ?>!</h1>
+        <h1>Welcome back, <?php echo htmlspecialchars($_SESSION['user']); ?>!</h1>
     </div>
 </main>
 

@@ -20,10 +20,16 @@
 
     <!-- Row 1 -->
     <div class="philpost-row">
-        <div class="input-inline">
-            <label class="philpost-label">ITEM:</label>
-            <input type="text" class="philpost-input">
-        </div>
+    <div class="input-group">
+        <label>ITEMS:</label>
+        <select name="Items">
+            <option value="" selected hidden>Select Items</option>
+            <option>South Sea Pearl</option>
+            <option>PHL. MUSICAL INST</option>
+            <option>75 yrs Comelec</option>
+            <option>Phl. Eagle</option>
+        </select>
+    </div>
 
         <div class="input-inline">
             <label class="philpost-label">TOTAL WEIGHTED AVE. COST:</label>

@@ -28,7 +28,7 @@
         <table class="riraf-table" id="rirafTable">
             <thead>
                 <tr>
-                    <th>LOCATION</th>
+                    <th>Province</th>
                     <th>Location</th>
                     <th>File Name</th>
                     <th>Date</th>
@@ -78,7 +78,7 @@ let currentPage = 1;
         const actionTd = document.createElement('td');
 
         const editBtn = document.createElement('button');
-            editBtn.className = 'edit-btn';
+            editBtn.className = 'riraf-edit-btn';
             editBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Edit';
             editBtn.onclick = () => alert(`Edit row ${i + 1}`);
 
