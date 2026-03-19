@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $username = $_SESSION['user'];
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,388 +16,322 @@ $username = $_SESSION['user'];
 
 <header class="header">
     <div class="logo">
-        <img src="images/phlpost_logo.png" class="logo-img" alt="Logo">
+        <img src="images/phlpost_logo.png" class="logo-img">
     </div>
-
-    <nav class="nav">
-        <span class="nav-hover"></span>
-
-        <div class="dropdown">  
-            <button class="dropbtn dropdown-toggle">
-                Inventory Category
-                <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6" fill="none" stroke="black" stroke-width="2"/>
-                </svg>
-            </button>
-            <div class="dropdown-content">
-                <a href="accountable_form.php">Accountable forms</a>
-                <a href="riraf.php">Supplies</a>
-                <a href="deno.php">Merchandise</a>
-            </div>
-        </div>
-
-        <a href="stockcard.php">STOCK CARD</a>
-        <a href="masterlistdata.php">MASTER LIST DATA</a>
-
-        <div class="dropdown">
-            <button class="dropbtn dropdown-toggle">
-                <img src="images/admin_icon.png" class="admin-icon">
-                <?php echo htmlspecialchars($username); ?>
-                <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6" fill="none" stroke="black" stroke-width="2"/>
-                </svg>
-            </button>
-            <div class="dropdown-content">
-                <a href="manage_users.php">Manage Users</a>
-                <a href="logout.php">Logout</a>
-            </div>
-        </div>
-
-    </nav>
 </header>
 
+<div class="layout">
 
-<h2 class="forms-title">ACCOUNTABLE FORMS</h2>
+<!-- SIDEBAR -->
+<aside class="sidebar collapsed">
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="#" onclick="toggleSidebar(); return false;">
+                <img src="images/sideBar.png" class="side-icon">
+                <span>MENU</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="admin_dashboard.php">
+                <img src="images/dashboard.png" class="side-icon">
+                <span>DASHBOARD</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="manage_users.php">
+                <img src="images/manageUser.png" class="side-icon">
+                <span>MANAGE USERS</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" onclick="showIntro(); return false;">
+                <img src="images/account.png" class="side-icon">
+                <span>ACCOUNTABLE FORMS</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" onclick="showIntro(); return false;">
+                <img src="images/masterlist.png" class="side-icon">
+                <span>MASTERLISTS</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="sidebar-admin">
+        <div class="admin-info">
+            <img src="images/admin_icon.png" class="admin-icon">
+            <span><?php echo htmlspecialchars($username); ?></span>
+        </div>
+        <a href="logout.php" class="logout-btn">Logout</a>
+    </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
 
 <div class="blue-container">
 
-    <div class="forms-wrapper">
+    <!-- INTRO -->
+    <div id="introArea" class="forms-intro">
+        <h2>Select Type of Accountable Form</h2>
+        <p>Manage all accountable forms categories</p>
 
-        <!-- LEFT BUTTONS -->
+<div class="intro-cards">
+    <div class="intro-card" onclick="activateLeft(0)">
+        <img src="images/typeOfAcc.png" alt="Type of Accounts Icon" class="intro-icon">
+        <span>TYPE OF ACCOUNTS</span>
+    </div>
+
+    <div class="intro-card" onclick="activateLeft(1)">
+        <img src="images/riraf.png" alt="RIRAF Icon" class="intro-icon">
+        <span>RIRAF</span>
+    </div>
+
+    <div class="intro-card" onclick="activateLeft(2)">
+        <img src="images/stockCard.png" alt="Stock Card Icon" class="intro-icon">
+        <span>STOCK CARD</span>
+    </div>
+
+    <div class="intro-card" onclick="activateLeft(3)">
+        <img src="images/merchandise.png" alt="Merchandise Icon" class="intro-icon">
+        <span>MERCHANDISE</span>
+    </div>
+</div>
+    </div>
+
+    <!-- FULL SYSTEM (hidden first) -->
+    <div id="fullForms" style="display:none;">
+        <div class="forms-wrapper">
+
+            <!-- LEFT BUTTONS -->
         <div class="forms-left">
-
+            <button onclick="showTypeAccounts(this)">TYPE OF ACCOUNTS</button>
             <button onclick="showRiraf(this)">RIRAF</button>
-            <button onclick="loadContent('stockcard.php', this)">STOCK CARD</button>
-            <button onclick="loadContent('merchandise.php', this)">MERCHANDISE</button>
-
+            <button onclick="showOtherContent(this)">STOCK CARD</button>
+            <button onclick="showOtherContent(this)">MERCHANDISE</button>
         </div>
 
-
-        <!-- RIGHT PANEL -->
-        <div class="forms-right">
-
-            <div class="type-header" style="display:none;">
-                <label>Type of Accounts:</label>
-
-                <select id="accountType">
-                    <option value="" disabled selected hidden>Select Type</option>
-                    <option value="postage">POSTAGE STAMPS</option>
-                    <option value="philatelic">PHILATELIC STAMPS</option>
-                    <option value="money">MONEY ORDER</option>
-                    <option value="receipt">OFFICIAL RECEIPT</option>
-                </select>
+            <!-- RIGHT -->
+            <div class="forms-right">
+                <div class="type-header">
+                    <label>Type of Accounts:</label>
+                    <select id="accountType">
+                        <option value="" disabled selected hidden>Select Type</option>
+                        <option value="postage">POSTAGE STAMPS</option>
+                    </select>
+                </div>
+                <div id="content-area"></div>
             </div>
 
-            <div id="content-area"></div>
-
         </div>
-
     </div>
 
 </div>
 
-
+</main>
+</div>
 
 <script>
+    function activateLeft(index){
+    // hide intro
+    document.getElementById("introArea").style.display = "none";
 
-/* SHOW RIRAF */
-function showRiraf(btn){
+    // show fullForms
+    document.getElementById("fullForms").style.display = "block";
 
-    document.querySelectorAll('.forms-left button').forEach(b=>{
-        b.classList.remove("active");
-    });
-
-    btn.classList.add("active");
-
-    document.querySelector(".type-header").style.display = "flex";
-    document.getElementById("content-area").innerHTML = "";
+    // trigger corresponding button
+    const btn = document.querySelectorAll('.forms-left button')[index];
+    btn.click();
 }
 
+/* SIDEBAR */
+function toggleSidebar(){
+    document.querySelector('.sidebar').classList.toggle('collapsed');
+}
 
+/* INTRO VIEW */
+function showIntro(){
+    document.getElementById("introArea").style.display = "block";
+    document.getElementById("fullForms").style.display = "none";
+}
 
-/* LOAD OTHER PAGES */
-function loadContent(url, btn){
+/* LOAD FULL SYSTEM */
+function loadFullForms(){
+    document.getElementById("introArea").style.display = "none";
+    document.getElementById("fullForms").style.display = "block";
+}
 
+/* TYPE OF ACCOUNTS */
+/* TYPE OF ACCOUNTS */
+function showTypeAccounts(btn){
     document.querySelectorAll('.forms-left button').forEach(b=>{
         b.classList.remove("active");
     });
+    btn.classList.add("active");
 
+    const rightPanel = document.querySelector(".forms-right");
+    const content = document.getElementById("content-area");
+
+    // SHOW cards
+    document.querySelector(".type-header").style.display = "none"; // optional: kung dropdown gusto i-hide
+    rightPanel.classList.add("no-gray");
+
+    content.innerHTML = `
+    <div class="toa-outer">
+        <div class="toa-container">
+            <h3 class="toa-title">TYPES OF ACCOUNT</h3>
+            <div class="toa-grid">
+                <div class="toa-card toa-green" onclick="toaAction('add')">
+                    <img src="images/addNew.png">
+                    <span>Add New</span>
+                </div>
+                <div class="toa-card toa-blue">
+                    <img src="images/view.png">
+                    <span>View Result</span>
+                </div>
+                <div class="toa-card toa-orange">
+                    <img src="images/edit.png">
+                    <span>Edit Accounts</span>
+                </div>
+                <div class="toa-card toa-red">
+                    <img src="images/delete.png">
+                    <span>Delete Account</span>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+/* RIRAF, STOCK CARD, MERCHANDISE */
+function showOtherContent(btn){
+    document.querySelectorAll('.forms-left button').forEach(b=>{
+        b.classList.remove("active");
+    });
+    btn.classList.add("active");
+
+    // I-hide jud ang dropdown para sa STOCK CARD & MERCHANDISE
+    document.querySelector(".type-header").style.display = "none";
+
+    // Load content
+    const content = document.getElementById("content-area");
+    content.innerHTML = "";
+
+    if(btn.textContent.includes("STOCK CARD")){
+        loadContent('stockcard.php', btn);
+    }
+    else if(btn.textContent.includes("MERCHANDISE")){
+        loadContent('merchandise.php', btn);
+    }
+}
+
+/* RIRAF */
+function showRiraf(btn){
+    document.querySelectorAll('.forms-left button').forEach(b=>{
+        b.classList.remove("active");
+    });
     btn.classList.add("active");
 
     document.querySelector(".type-header").style.display = "none";
-    document.getElementById("content-area").innerHTML = "";
+
+    const content = document.getElementById("content-area");
+
+    content.innerHTML = `
+    <div class="riraf-ui">
+
+        <div class="riraf-cards">
+            <div class="riraf-card green" onclick="loadContent('riraf_add.php', this)">
+                <img src="images/addNew.png">
+                <span>Add New</span>
+            </div>
+
+            <div class="riraf-card blue" onclick="loadContent('riraf_view.php', this)">
+                <img src="images/view.png">
+                <span>View Result</span>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
+/* LOAD OTHER */
+function loadContent(url, btn){
+    document.querySelectorAll('.forms-left button').forEach(b=>{
+        b.classList.remove("active");
+    });
+
+    btn.classList.add("active");
 
     fetch(url)
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById("content-area").innerHTML = html;
-        })
-        .catch(err => {
-            document.getElementById("content-area").innerHTML = "Error loading page.";
-        });
+    .then(res=>res.text())
+    .then(html=>{
+        document.getElementById("content-area").innerHTML = html;
+    });
 }
 
-
-
-/* ACCOUNT TYPE CHANGE */
-document.getElementById("accountType").addEventListener("change", function(){
-
-const content = document.getElementById("content-area");
-
-if(this.value === "postage"){
-
-content.innerHTML = `
-
-<div class="riraf-layout">
-
-    <div class="riraf-left">
-
-        <div class="form-row">
-            <label>PROVINCE:</label>
-            <div class="input-group">
-                <input type="text" id="provinceInput">
-                <button class="enter-btn" onclick="addProvince()">ENTER</button>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <label>POST OFFICE NAME:</label>
-            <div class="input-group">
-                <input type="text" id="officeInput">
-                <button class="enter-btn" onclick="addOffice()">ENTER</button>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <label>KIND OF STAMP:</label>
-            <div class="input-group">
-                <input type="text" id="stampInput">
-                <button class="enter-btn" onclick="addStamp()">ENTER</button>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <label>DENO:</label>
-            <div class="input-group">
-                <input type="text" id="denoInput">
-                <button class="enter-btn" onclick="addDeno()">ENTER</button>
-            </div>
-        </div>
-
-    </div>
-
-
-    <div class="riraf-right" id="resultPanel">
-
-        <div class="result-header">
-            <span id="resultTitle"></span>
-            <img src="images/del.png" class="delete-icon" onclick="clearResults()">
-        </div>
-
-        <table class="results-table">
-            <tbody id="resultsBody">
-            </tbody>
-        </table>
-
-    </div>
-
-</div>
-
-`;
-
+/* MODALS */
+function toaAction(action){
+    if(action==="add"){
+        document.getElementById("toaModal").style.display="flex";
+    }
 }
 
-});
-
-
-
-/* RESULT STORAGE */
-let currentTitle = "";
-let results = [];
-
-
-/* RENDER RESULTS (panel hidden until data) */
-function renderResults(title){
-
-const body = document.getElementById("resultsBody");
-const header = document.getElementById("resultTitle");
-const panel = document.getElementById("resultPanel");
-
-if(results.length === 0){
-    panel.style.display = "none";
-    header.textContent = "";
-    body.innerHTML = "";
-    return;
+function closeModal(){
+    document.getElementById("toaModal").style.display="none";
 }
 
-panel.style.display = "block";
-header.textContent = title;
-body.innerHTML = "";
+function submitAccount(){
+    const val=document.getElementById("newAccountInput").value;
 
-results.forEach(item => {
-    const row = document.createElement("tr");
+    if(val===""){
+        alert("Please enter account type");
+        return;
+    }
 
-    row.innerHTML = `
-        <td>${item}</td>
-        <td><input type="checkbox"></td>
-    `;
+    document.getElementById("newAccountInput").value="";
+    closeModal();
+    document.getElementById("confirmationModal").style.display="flex";
 
-    body.appendChild(row);
-});
+    document.getElementById("yesBtn").onclick=()=>{
+        document.getElementById("confirmationModal").style.display="none";
+        document.getElementById("toaModal").style.display="flex";
+    };
 
+    document.getElementById("noBtn").onclick=()=>{
+        document.getElementById("confirmationModal").style.display="none";
+    };
 }
-
-
-
-/* ADD PROVINCE */
-function addProvince(){
-
-const province = document.getElementById("provinceInput").value;
-
-if(province === ""){
-    alert("Please enter province");
-    return;
-}
-
-currentTitle = "PROVINCE RESULT";
-results = [province];
-
-renderResults(currentTitle);
-
-document.getElementById("provinceInput").value = "";
-
-}
-
-
-
-/* ADD OFFICE */
-function addOffice(){
-
-const office = document.getElementById("officeInput").value;
-
-if(office === ""){
-    alert("Please enter post office name");
-    return;
-}
-
-currentTitle = "POST OFFICE RESULT";
-results = [office];
-
-renderResults(currentTitle);
-
-document.getElementById("officeInput").value = "";
-
-}
-
-
-
-/* ADD STAMP */
-function addStamp(){
-
-const stamp = document.getElementById("stampInput").value;
-
-if(stamp === ""){
-    alert("Please enter kind of stamp");
-    return;
-}
-
-currentTitle = "KIND OF STAMP RESULT";
-results = [stamp];
-
-renderResults(currentTitle);
-
-document.getElementById("stampInput").value = "";
-
-}
-
-
-
-/* ADD DENO */
-function addDeno(){
-
-const deno = document.getElementById("denoInput").value;
-
-if(deno === ""){
-    alert("Please enter deno");
-    return;
-}
-
-currentTitle = "DENO RESULT";
-results = [deno];
-
-renderResults(currentTitle);
-
-document.getElementById("denoInput").value = "";
-
-}
-
-
-
-/* HEADER HOVER EFFECT */
-const nav = document.querySelector('.nav');
-const hover = document.querySelector('.nav-hover');
-
-document.querySelectorAll('.nav a, .dropdown-toggle').forEach(item => {
-
-item.addEventListener('mouseenter', function() {
-
-const rect = this.getBoundingClientRect();
-const navRect = nav.getBoundingClientRect();
-
-hover.style.width = rect.width + 'px';
-hover.style.left = (rect.left - navRect.left) + 'px';
-hover.style.opacity = '1';
-
-});
-
-});
-
-
-nav.addEventListener('mouseleave', function(){
-
-hover.style.width = '0';
-hover.style.opacity = '0';
-
-});
-
-
-
-/* DROPDOWN CLICK */
-document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-
-btn.addEventListener('click', function (e) {
-
-e.preventDefault();
-
-const dropdown = this.parentElement;
-const content = dropdown.querySelector('.dropdown-content');
-
-dropdown.classList.toggle('active');
-content.classList.toggle('show');
-
-});
-
-});
-
-
-
-/* CLOSE DROPDOWN */
-window.addEventListener('click', function (e){
-
-document.querySelectorAll('.dropdown').forEach(drop => {
-
-if (!drop.contains(e.target)) {
-
-drop.classList.remove('active');
-drop.querySelector('.dropdown-content').classList.remove('show');
-
-}
-
-});
-
-});
 
 </script>
+
+<!-- MODALS -->
+<div id="toaModal" class="toa-modal">
+    <div class="toa-modal-content">
+        <label>Enter Type of Account:</label>
+        <input type="text" id="newAccountInput">
+
+        <div class="modal-actions">
+            <button onclick="submitAccount()">Add</button>
+            <button onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="confirmationModal" class="toa-modal">
+    <div class="toa-modal-content">
+        <p>Successfully Added!</p>
+        <p>You want to ADD more?</p>
+
+        <div class="modal-actions">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -4,104 +4,86 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $username = $_SESSION['user'];
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body class="accountable-body">
+
+<!-- HEADER (LOGO ONLY) -->
 <header class="header">
     <div class="logo">
         <img src="images/phlpost_logo.png" class="logo-img" alt="Logo">
     </div>
-
-    <nav class="nav">
-        <span class="nav-hover"></span>
-
-        <!-- INVENTORY DROPDOWN -->
-        <div class="dropdown">  
-            <button class="dropbtn dropdown-toggle">
-                Inventory Category
-                <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6" fill="none" stroke="black" stroke-width="2"/>
-                </svg>
-            </button>
-            <div class="dropdown-content">
-                <a href="accountable_form.php">Accountable forms</a>
-                <a href="riraf.php">Supplies</a>
-                <a href="deno.php">Merchandise</a>
-            </div>
-        </div>
-
-        <a href="stockcard.php">STOCK CARD</a>
-        <a href="masterlistdata.php">MASTER LIST DATA</a>
-
-        <!-- ADMIN DROPDOWN -->
-        <div class="dropdown">
-            <button class="dropbtn dropdown-toggle">
-                <img src="images/admin_icon.png" class="admin-icon" alt="Admin Icon">
-                <?php echo htmlspecialchars($username); ?>
-                <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6" fill="none" stroke="black" stroke-width="2"/>
-                </svg>
-            </button>
-            <div class="dropdown-content">
-                <a href="manage_users.php">Manage Users</a>
-                <a href="logout.php">Logout</a>
-            </div>
-        </div>
-
-    </nav>
 </header>
 
-<!-- HOVER + DROPDOWN SCRIPT -->
+<!-- LAYOUT -->
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar collapsed">
+
+        <!-- MENU -->
+        <ul class="sidebar-menu">
+
+            <li>
+                <a href="#" onclick="toggleSidebar(); return false;">
+                    <img src="images/sideBar.png" class="side-icon">
+                    <span>MENU</span>
+                </a>
+            </li>
+            <li>
+                <a href="admin_dashboard.php">
+                    <img src="images/dashboard.png" class="side-icon">
+                    <span>DASHBOARD</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="manage_users.php">
+                    <img src="images/manageUser.png" class="side-icon">
+                    <span>MANAGE USERS</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="accountable_form.php">
+                    <img src="images/account.png" class="side-icon">
+                    <span>ACCOUNTABLE FORMS</span>  
+                </a>
+            </li>
+
+            <li>
+                <a href="masterlistdata.php">
+                    <img src="images/masterlist.png" class="side-icon">
+                    <span>MASTER LIST DATA</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- ADMIN SECTION (PINAKA UBOS) -->
+        <div class="sidebar-admin">
+
+            <div class="admin-info">
+                <img src="images/admin_icon.png" class="admin-icon">
+                <span><?php echo htmlspecialchars($username); ?></span>
+            </div>
+
+            <a href="logout.php" class="logout-btn">Logout</a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT START -->
+    <main class="main-content">
 <script>
-const nav = document.querySelector('.nav');
-const hover = document.querySelector('.nav-hover');
-
-// HOVER SLIDE EFFECT
-document.querySelectorAll('.nav a, .dropdown-toggle').forEach(item => {
-    item.addEventListener('mouseenter', function() {
-        const rect = this.getBoundingClientRect();
-        const navRect = nav.getBoundingClientRect();
-
-        hover.style.width = rect.width + 'px';
-        hover.style.left = (rect.left - navRect.left) + 'px';
-        hover.style.opacity = '1';
-    });
-});
-
-// HIDE HOVER WHEN LEAVING NAV
-nav.addEventListener('mouseleave', function() {
-    hover.style.width = '0';
-    hover.style.opacity = '0';
-});
-
-// CLICKABLE DROPDOWN TOGGLE
-document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        const dropdown = this.parentElement;
-        const content = dropdown.querySelector('.dropdown-content');
-
-        dropdown.classList.toggle('active');
-        content.classList.toggle('show');
-    });
-});
-
-// CLOSE DROPDOWN WHEN CLICKING OUTSIDE
-window.addEventListener('click', function (e) {
-    document.querySelectorAll('.dropdown').forEach(drop => {
-        if (!drop.contains(e.target)) {
-            drop.classList.remove('active');
-            drop.querySelector('.dropdown-content').classList.remove('show');
-        }
-    });
-});
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('collapsed');
+}
 </script>
-
-</body>
-</html>
