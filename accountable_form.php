@@ -190,21 +190,56 @@ function showTypeAccounts(btn){
                     <img src="images/addNew.png">
                     <span>Add New</span>
                 </div>
-                <div class="toa-card toa-blue">
+                <div class="toa-card toa-blue" onclick="viewTypeAccounts()">
                     <img src="images/view.png">
                     <span>View Result</span>
-                </div>
-                <div class="toa-card toa-orange">
-                    <img src="images/edit.png">
-                    <span>Edit Accounts</span>
-                </div>
-                <div class="toa-card toa-red">
-                    <img src="images/delete.png">
-                    <span>Delete Account</span>
                 </div>
             </div>
         </div>
     </div>`;
+}
+function viewTypeAccounts(){
+    const content = document.getElementById("content-area");
+
+    content.innerHTML = `
+    <div class="toa-view-wrapper">
+        <div class="toa-view-container">
+
+            <div class="toa-view-header">
+                <h3>List of Accounts:</h3>
+                <button class="back-btn" onclick="showTypeAccounts(document.querySelector('.forms-left button.active'))">
+                    <img src="images/back.png" class="back-icon">
+                    Back
+                </button>
+            </div>
+
+            <table class="toa-table">
+                <thead>
+                    <tr>
+                        <th>Accounts</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A. Postage Stamps</td>
+                        <td>
+                            <button class="edt-btn">Edit</button>
+                            <button class="del-btn" onclick="deleteAccount(this)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    `;
+}
+function deleteAccount(btn){
+    if(confirm("Are you sure you want to delete this account?")){
+        const row = btn.closest("tr");
+        row.remove();
+    }
 }
 
 /* RIRAF, STOCK CARD, MERCHANDISE */
@@ -241,10 +276,13 @@ function showRiraf(btn){
     const content = document.getElementById("content-area");
 
     content.innerHTML = `
-    <div class="riraf-ui">
+    <div class="riraf-ui" style="position: relative; min-height: 200px;">
+
+        <!-- FORM OVERLAY -->
+        <div id="riraf-form-area" class="riraf-form-overlay-small"></div>
 
         <div class="riraf-cards">
-            <div class="riraf-card green" onclick="loadContent('riraf_add.php', this)">
+            <div class="riraf-card green" onclick="rirafAddForm()">
                 <img src="images/addNew.png">
                 <span>Add New</span>
             </div>
@@ -258,6 +296,180 @@ function showRiraf(btn){
     `;
 }
 
+function rirafAddForm() {
+    const formArea = document.getElementById("riraf-form-area");
+
+    formArea.innerHTML = `
+    <div class="riraf-select-wrapper">
+        <div class="riraf-select-container">
+            <h3 class="riraf-title">SELECT BUTTONS TO ADD</h3>
+
+            <div class="riraf-grid">
+                <div class="riraf-box" onclick="selectField('province')">
+                    <img src="images/province.png">
+                    <span>PROVINCE</span>
+                </div>
+
+                <div class="riraf-box" onclick="selectField('postoffice')">
+                    <img src="images/postoffice.png">
+                    <span>POST OFFICE NAME</span>
+                </div>
+
+                <div class="riraf-box" onclick="selectField('denomination')">
+                    <img src="images/denomination.png">
+                    <span>DENOMINATION</span>
+                </div>
+
+                <div class="riraf-box" onclick="selectField('stamp')">
+                    <img src="images/stamp.png">
+                    <span>KINDS OF STAMP</span>
+                </div>
+
+                <div class="riraf-box" onclick="selectField('item')">
+                    <img src="images/item.png">
+                    <span>ITEM</span>
+                </div>
+
+                <div class="riraf-box" onclick="selectField('entry')">
+                    <img src="images/entry.png">
+                    <span>ENTRY FORM</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    `;
+}function selectField(type){
+    // highlight selected box
+    setTimeout(() => {
+        const boxes = document.querySelectorAll(".riraf-box");
+        let box = null;
+
+        boxes.forEach(b=>{
+            const spanText = b.querySelector("span").textContent.trim().toLowerCase();
+            if(
+                (type === "province" && spanText === "province") ||
+                (type === "postoffice" && spanText === "post office name") ||
+                (type === "denomination" && spanText === "denomination") ||
+                (type === "stamp" && spanText === "kinds of stamp") ||
+                (type === "item" && spanText === "item") ||
+                (type === "entry" && spanText === "entry form")
+            ){
+                box = b;
+            }
+        });
+
+        if(box){
+            boxes.forEach(b => b.classList.remove("selected"));
+            box.classList.add("selected");
+        }
+    }, 50);
+
+    // prevent duplicate popup
+    if(document.querySelector(".riraf-popup")) return;
+
+    const popup = document.createElement("div");
+    popup.className = (type === "entry") ? "riraf-popup entry-popup" : "riraf-popup";
+
+    // 🔥 SPECIAL ENTRY FORM (FULL FORM)
+    if(type === "entry"){
+        popup.innerHTML = `
+            <div class="riraf-popup-box entry-layout">
+
+                <div class="entry-left">
+                    <h3>Entry Form:</h3>
+
+                    <label>PROVINCE:</label>
+                    <input type="text" id="entryProvince">
+
+                    <label>POST OFFICE NAME:</label>
+                    <input type="text" id="entryPostOffice">
+
+                    <label>DENO:</label>
+                    <input type="text" id="entryDeno">
+
+                    <label>KIND OF STAMPS:</label>
+                    <input type="text" id="entryStamp">
+
+                    <label>ITEM:</label>
+                    <input type="text" id="entryItem">
+
+                    <div class="popup-actions">
+                        <button class="bck-btn" onclick="closePopup()">BACK</button>
+                        <button class="sbmt-btn" onclick="submitEntry()">SUBMIT</button>
+                    </div>
+                </div>
+
+                <div class="entry-right"></div>
+
+            </div>
+        `;
+    } 
+    else {
+        // 🔥 DEFAULT SINGLE INPUT POPUP
+        let labelText = "";
+
+        if(type === "province"){
+            labelText = "Please Enter Province:";
+        }
+        else if(type === "postoffice"){
+            labelText = "Please Enter Post Office Name:";
+        }
+        else if(type === "denomination"){
+            labelText = "Please Enter Denomination:";
+        }
+        else if(type === "stamp"){
+            labelText = "Please Enter Kind of Stamp:";
+        }
+        else if(type === "item"){
+            labelText = "Please Enter Item:";
+        }
+
+        popup.innerHTML = `
+            <div class="riraf-popup-box">
+                <label>${labelText}</label>
+                <input type="text" id="dynamicInput" placeholder="${labelText}">
+
+                <div class="popup-actions">
+                    <button class="bck-btn" onclick="closePopup()">BACK</button>
+                    <button class="sbmt-btn" onclick="submitDynamic('${type}')">SUBMIT</button>
+                </div>
+            </div>
+        `;
+    }
+
+    document.querySelector(".riraf-ui").appendChild(popup);
+}
+function submitDynamic(type){
+    const input = document.getElementById("dynamicInput").value;
+
+    if(input === ""){
+        alert("Please fill out the field");
+        return;
+    }
+
+    alert(type + " Saved: " + input);
+    closePopup();
+}
+function closePopup(){
+    const popup = document.querySelector(".riraf-popup");
+    if(popup) popup.remove();
+}
+function submitEntry(){
+    const province = document.getElementById("entryProvince").value;
+    const postOffice = document.getElementById("entryPostOffice").value;
+    const deno = document.getElementById("entryDeno").value;
+    const stamp = document.getElementById("entryStamp").value;
+    const item = document.getElementById("entryItem").value;
+
+    if(!province || !postOffice || !deno || !stamp || !item){
+        alert("Please fill out all fields");
+        return;
+    }
+
+    alert("Entry Saved Successfully!");
+    closePopup();
+}
 /* LOAD OTHER */
 function loadContent(url, btn){
     document.querySelectorAll('.forms-left button').forEach(b=>{

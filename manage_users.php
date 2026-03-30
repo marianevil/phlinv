@@ -27,7 +27,6 @@ $result = mysqli_query($conn, $query);
  
 <div class="manage-container">
     
-
 <table class="manage-table">
 <thead>
 <tr>
@@ -37,10 +36,12 @@ $result = mysqli_query($conn, $query);
     <th>Action</th>
 </tr>
 </thead>
+
 <tbody>
 
 <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-<tr>
+<tr class="<?= $row['status'] == 'inactive' ? 'inactive-row' : '' ?>">
+
     <td><?= $row['username']; ?></td>
 
     <td>
@@ -51,17 +52,35 @@ $result = mysqli_query($conn, $query);
         <?= $row['last_login'] ? date("h:i A", strtotime($row['last_login'])) : "-"; ?>
     </td>
 
-    <td>
+<td>
+    <div class="action-buttons">
+
+        <?php if($row['status'] == 'active'): ?>
+            <a href="db/toggle_user.php?id=<?= $row['id']; ?>&status=inactive"
+               onclick="return confirm('Deactivate this user?');"
+               class="deactivate-btn">
+                Deactivate
+            </a>
+        <?php else: ?>
+            <a href="db/toggle_user.php?id=<?= $row['id']; ?>&status=active"
+               onclick="return confirm('Activate this user?');"
+               class="activate-btn">
+                Activate
+            </a>
+        <?php endif; ?>
+
         <a href="edit_user.php?id=<?= $row['id']; ?>" class="edit-btn">
             Edit
         </a>
 
         <a href="db/delete_user.php?id=<?= $row['id']; ?>"
-            onclick="return confirm('Delete this user?');"
-            class="delete-btn">
+           onclick="return confirm('Delete this user?');"
+           class="delete-btn">
             Delete
         </a>
-    </td>
+
+    </div>
+</td>
 </tr>
 <?php endwhile; ?>
 

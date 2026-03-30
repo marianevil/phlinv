@@ -1679,6 +1679,8 @@ body{
     display: flex;
     justify-content: center;
     gap: 40px;
+    
+    margin-top: 60px; /* 👈 pa-ubos */
 }
 
 /* CARD DESIGN */
@@ -1704,6 +1706,17 @@ body{
     width: 80px;
     margin-bottom: 20px;
 }
+/* TEXT STYLE (same for both) */
+.riraf-card span{
+    font-size: 14px;     /* same size */
+    font-weight: 600;
+    color: black;        /* default black */
+}
+
+/* REMOVE any inherited color sa blue */
+.riraf-card.blue span{
+    color: black;        /* force black */
+}
 
 /* COLORS */
 .riraf-card.green{
@@ -1717,6 +1730,188 @@ body{
 /* HOVER */
 .riraf-card:hover{
     transform: translateY(-8px) scale(1.05);
+}
+/* Small transparent overlay for RIRAF form */
+.riraf-form-overlay-small {
+    position: absolute;
+   top: 80px; /* adjust as needed above the cards */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px; /* smaller width */
+    pointer-events: auto;
+    z-index: 5;
+}
+
+.riraf-form-small {
+    background: rgba(255, 255, 255, 0.15); /* mas transparent */
+    
+    backdrop-filter: blur(90px);  /* 👈 mas kusog blur */
+    -webkit-backdrop-filter: blur(90px);
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+
+    padding: 12px;
+
+    box-shadow: 
+        0 8px 25px rgba(0,0,0,0.25),
+        inset 0 0 15px rgba(255,255,255,0.2);
+}
+
+.riraf-form-small .riraf-form-inner label {
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.riraf-form-small .riraf-form-inner input {
+    width: 100%;
+    padding: 4px 6px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+}
+
+.riraf-form-small .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 6px;
+}
+
+.riraf-form-small .form-actions button {
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.riraf-form-small .form-actions button:first-child {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.riraf-form-small .form-actions button:last-child {
+    background-color: #f44336;
+    color: #fff;
+}
+.riraf-select-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: -50px;
+}
+
+.riraf-select-container {
+    background: rgba(255, 255, 255, 0.514); /* transparent */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.riraf-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.riraf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    gap: 20px;
+    justify-content: center;
+}
+
+.riraf-box {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.riraf-box.selected {
+    background-color: #99FA99 !important; /* green highlight */
+}
+
+.riraf-box:hover {
+    transform: translateY(-5px);
+}
+
+.riraf-box img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.riraf-box span {
+    display: block;
+    font-weight: bold;
+}
+.riraf-popup {
+    position: absolute;
+    top: 230px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+
+    animation: fadeIn 0.3s ease;
+}
+
+.riraf-popup-box {
+    background: rgba(255, 255, 255, 0.2); /* semi-transparent */
+    backdrop-filter: blur(10px);          /* glass blur effect */
+    -webkit-backdrop-filter: blur(10px);  /* safari support */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* soft border for glass look */
+    padding: 20px 25px;
+    width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: left;
+    font-weight: bold;
+}
+
+.riraf-popup .popup-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.riraf-popup .popup-actions button {
+    height: 30px;           /* taas sa button */
+    font-size: 12px;        /* mas klaro ang text */
+    border-radius: 8px;     /* rounded corners */
+} 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+/* ENTRY FORM ONLY */
+.entry-popup {
+    top:70px;
+}
+
+/* OPTIONAL: kung gusto nimo mas dako gamay */
+.entry-popup .riraf-popup-box {
+    width: 400px;
+}
+.bck-btn {
+    width: 90px;
+    background: #FF5959;
+    color: black; /* para readable */
+}
+
+.sbmt-btn {
+    width:90px;
+    background: #00FA60;
+    color: #000; /* mas klaro sa light green */
 }
 
 
@@ -1845,7 +2040,9 @@ body{
 .edit-btn,
 .delete-btn,
 .save-btn,
-.cancel-btn {
+.cancel-btn,
+.activate-btn,
+.deactivate-btn {
     display: inline-block;
     min-width: 80px;          /* pareho width */
     padding: 8px 12px;
@@ -1862,7 +2059,7 @@ body{
 /* EDIT */
 .edit-btn {
     background: #3498db;
-    color: white;
+    color: black;
 }
 .edit-btn:hover {
     background: #2980b9;
@@ -1872,7 +2069,7 @@ body{
 /* DELETE */
 .delete-btn {
     background: #e74c3c;
-    color: white;
+    color: black;
 }
 .delete-btn:hover {
     background: #c0392b;
@@ -1924,6 +2121,25 @@ body{
     width: 100%;
     padding: 8px;
     margin-top: 5px;
+}
+.deactivate-btn{
+    background: #f39c12;
+    color: black;
+}
+
+.deactivate-btn:hover{
+    background: #d68910;
+    transform: scale(1.05);
+}
+
+.activate-btn{
+    background: #12cf21;
+    color: black;
+}
+
+.activate-btn:hover{
+    background: #00ff15;
+    transform: scale(1.05);
 }
 
 .password-label {
@@ -2222,13 +2438,13 @@ body{
 }
 .toa-grid{
     display: grid;
-    grid-template-columns: repeat(2, 180px);
-    gap: 30px;
+    grid-template-columns: repeat(2, 220px); /* match sa card width */
+    gap: 50px; /* 👈 mas dako space */
     justify-content: center;
 }
 .toa-card {
-    width: 180px;
-    height: 120px;
+    width: 220px;
+    height: 260px;
     border-radius: 15px;
 
     display: flex;
@@ -2266,13 +2482,10 @@ body{
 /* COLORS (SAFE) */
 .toa-green{ background:#48F25E; }
 .toa-blue{ background:#5A6BFF; }
-.toa-orange{ background:#FFA726; }
-.toa-red{ background:#E74C3C; }
+
 /* Specific hover colors */
 .toa-green:hover { background: #33f757; }   /* lighter green */
 .toa-blue:hover  { background: #5160e9; }   /* lighter blue */
-.toa-orange:hover{ background: #f3a735; }   /* lighter orange */
-.toa-red:hover   { background: #f04d3b; }   /* lighter red */
 
 /* MODAL BACKGROUND */
 .toa-modal {
@@ -2322,6 +2535,75 @@ body{
     padding: 8px;
     margin-top: 10px;
     margin-bottom: 15px;
+}
+
+.toa-view-wrapper{
+    padding: 20px;
+}
+
+.toa-view-container{
+    background: rgba(255, 255, 255, 0.15); /* transparent */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 12px;
+    padding: 20px;
+
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.toa-view-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    
+}
+
+.toa-table{
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff; /* WHOLE TABLE WHITE */
+    overflow: hidden;
+}
+
+.toa-table th, .toa-table td{
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: left;
+}
+
+.edt-btn{
+    background: #48F25E;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.del-btn{
+    background: #F24848;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 5px;
+    color: black;
+}
+
+.delete-btn:hover{
+    background: #d93a3a;
+}
+
+.back-btn{
+    background: linear-gradient(135deg, #f7f0f0, #928c8c); /* black gradient */
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.back-icon{
+    width: 16px;
+    height: 16px;
 }
 
 /*modal action*/

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connection.php';
+include "connection.php";;
 
 $username = trim($_POST['username']);
 $password = $_POST['password'];
@@ -15,16 +15,25 @@ if ($result->num_rows > 0) {
 
     if (password_verify($password, $user['password'])) {
 
-        // UPDATE LAST LOGIN
+        // ✅ CHECK IF ACCOUNT IS DEACTIVATED
+        if ($user['status'] == 'inactive') {
+            echo "<script>
+                alert('Your account has been deactivated');
+                window.history.back();
+            </script>";
+            exit();
+        }
+
+        // ✅ UPDATE LAST LOGIN
         $update = $conn->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
         $update->bind_param("i", $user['id']);
         $update->execute();
 
-        // SESSION
+        // ✅ SET SESSION
         $_SESSION['user'] = $user['username'];
         $_SESSION['role'] = $user['role'];
 
-        // redirect based on role
+        // ✅ REDIRECT BASED ON ROLE
         if ($user['role'] === 'admin') {
             header("Location: ../admin_dashboard.php");
         } else {
@@ -34,6 +43,10 @@ if ($result->num_rows > 0) {
     }
 }
 
-echo "<script>alert('Invalid login'); window.history.back();</script>";
+// ❌ INVALID LOGIN
+echo "<script>
+    alert('Invalid login');
+    window.history.back();
+</script>";
 exit();
 ?>
