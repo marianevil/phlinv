@@ -482,6 +482,13 @@
             margin-bottom:1px;
         }
 
+        .two-col .input-group{
+            width: 350px;
+        }
+        .two-col{
+            grid-template-columns: 350px;
+        }
+
         .four-col {
             display:grid;
             grid-template-columns: 2.5fr 1.5fr;
@@ -559,6 +566,15 @@
         
         
         }
+
+
+        /* Fixed width for Weighted Average Cost inputs */
+.weighted-input {
+    width: 120px !important;  /* you can adjust this to your preferred width */
+    min-width: 200px !important;
+    max-width: 300px !important;
+}
+
 
     /* ===== UNIFIED INPUT STYLE (ALL INPUTS) ===== */
     input[type="text"],
@@ -1865,11 +1881,11 @@ body{
 }
 
 .riraf-popup-box {
-    background: rgba(255, 255, 255, 0.2); /* semi-transparent */
-    backdrop-filter: blur(10px);          /* glass blur effect */
-    -webkit-backdrop-filter: blur(10px);  /* safari support */
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* soft border for glass look */
+    background: rgba(255, 255, 255, 0.2); /* same glass transparency */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3); /* soft glass border */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* same glass shadow */
     padding: 20px 25px;
     width: 350px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
@@ -1910,7 +1926,7 @@ body{
 
 .sbmt-btn {
     width:90px;
-    background: #00FA60;
+    background: #01dd55;
     color: #000; /* mas klaro sa light green */
 }
 
@@ -2519,6 +2535,8 @@ body{
         inset 0 2px 6px rgba(255,255,255,0.7),
         inset 0 -3px 6px rgba(0,0,0,0.2),
         0 10px 25px rgba(0,0,0,0.3);
+
+    
 }
 /* CONFIRMATION MODAL SPECIFIC STYLING */
 #confirmationModal .toa-modal-content {
@@ -2541,7 +2559,8 @@ body{
     padding: 20px;
 }
 
-.toa-view-container{
+/* Make the table scrollable inside the container */
+.toa-view-container {
     background: rgba(255, 255, 255, 0.15); /* transparent */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -2551,8 +2570,17 @@ body{
 
     border: 1px solid rgba(255,255,255,0.3);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
 
+    /* NEW */
+    max-height: 400px; /* or adjust as needed */
+    overflow-y: auto;  /* enables vertical scroll */
+}
+.toa-table thead th {
+    position: sticky;
+    top: 0;
+    background: #fff; /* same as table background */
+    z-index: 10;
+}
 .toa-view-header{
     display: flex;
     justify-content: space-between;
@@ -2645,4 +2673,656 @@ body{
 .modal-actions button:last-child:hover {
     background: #d84333;
     transform: translateY(-2px);
+}
+/* ============================================
+   RIRAF VIEW WRAPPER STYLES
+   ============================================ */
+.riraf-view-wrapper {
+    background: #bfe6ec;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+}
+
+/* Title */
+.riraf-view-title {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Top bar with dropdown and buttons */
+.riraf-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Dropdown */
+#rirafSelect {
+    padding: 6px 10px;
+    border: 1px solid #888;
+    border-radius: 6px;
+    background: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#rirafSelect:hover {
+    border-color: #5ec5d6;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+#rirafSelect:focus {
+    outline: none;
+    border-color: #2ca9c2;
+    box-shadow: 0 0 5px rgba(44,169,194,0.5);
+}
+
+/* Buttons */
+.riraf-top-bar button {
+    padding: 6px 14px;
+    font-size: 13px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    color: #fff;
+}
+
+/* Back button */
+.riraf-top-bar button:nth-child(1) {
+    background-color: #2196F3;
+}
+.riraf-top-bar button:nth-child(1):hover {
+    background-color: #1976D2;
+}
+
+/* Delete button */
+.riraf-top-bar button:nth-child(2) {
+    background-color: #f44336;
+}
+.riraf-top-bar button:nth-child(2):hover {
+    background-color: #d32f2f;
+}
+
+/* Pagination buttons container */
+.riraf-view-wrapper > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Pagination buttons */
+/* Pagination buttons */
+.riraf-view-wrapper > div:last-child button {
+    background-color: #21B7EE;
+    border-radius: 15px;
+    width: 100px;   /* desired width */
+    height: 30px;   /* desired height */
+    font-size: 14px; /* optional, adjust text size */
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.riraf-view-wrapper > div:last-child button:hover {
+    background-color: #1aa3d8;  /* darker on hover */
+}
+
+/* ============================================
+   TABLE STYLES
+   ============================================ */
+.riraf-view-wrapper div[style*="overflow:auto"] {
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.riraf-view-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.riraf-view-wrapper th, 
+.riraf-view-wrapper td {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.riraf-view-wrapper th:first-child,
+.riraf-view-wrapper td:first-child {
+    width: 30px; /* checkbox column */
+    text-align: center;
+}
+
+/* Alternating row colors */
+.riraf-view-wrapper tbody tr:nth-child(even) {
+    background-color: #e0f2f3;
+}
+
+/* Row hover highlight */
+.riraf-view-wrapper tbody tr:hover {
+    background-color: #d1eae9;
+}
+
+/* ============================================
+   OPTIONAL EXTRA STYLES
+   ============================================ */
+.riraf-top-bar label {
+    font-weight: bold;
+}
+.masterlist-title{
+    background:#ff4d4d;
+    color:black;
+    font-weight:bold;
+    padding:10px 25px;
+    width:220px;
+    margin:20px;
+    font-size:20px;
+    border-radius:4px;
+}
+
+.masterlist-card{
+    background:#e9eef2;
+    margin:20px;
+    padding:20px;
+    border-radius:8px;
+    color:black;
+}
+
+/* Filter */
+.filter-row{
+    margin-bottom:15px;
+    color:black;
+}
+
+.filter-row label{
+    font-weight:bold;
+    color:black;
+}
+
+.filter-row select{
+    padding:5px;
+    width:200px;
+    color:black;
+}
+
+/* Table Header */
+.table-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#cfe3ea;
+    padding:8px;
+    border-radius:5px 5px 0 0;
+    color:black;
+}
+
+.table-search input{
+    padding:5px 10px;
+    border-radius:15px;
+    border:1px solid #aaa;
+    color:black;
+}
+
+/* Table */
+.masterlist-table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    color:black;
+}
+
+.masterlist-table th{
+    background:#cfe3ea;
+    padding:8px;
+    border:1px solid #888;
+    color:black;
+}
+
+.masterlist-table td{
+    padding:8px;
+    border:1px solid #888;
+    text-align:center;
+    color:black;
+}
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filter-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-right {
+    display: flex;
+    align-items: center;
+}
+
+.export-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+/* Pagination */
+
+.pagination{
+    margin-top:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:black;
+}
+
+.prev, .next{
+    background:#1fa3d8;
+    border:none;
+    padding:6px 18px;
+    border-radius:20px;
+    color:black;
+    cursor:pointer;
+}
+
+.page-num span{
+    border:1px solid #555;
+    padding:4px 10px;
+    margin:0 3px;
+    color:black;
+}
+
+.page-num .active{
+    background:#1fa3d8;
+    color:black;
+}
+
+/* ===== STOCK CARD (SCARD VERSION) ===== */
+
+.scard-container {
+    background: #a9dbe2;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.scard-title {
+    background: linear-gradient(to right, #2c3cff, #4b5cff);
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    text-align: start;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.scard-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.scard-filter-left {
+    display: flex;
+    gap: 15px;
+}
+
+.scard-input-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.scard-input-group input {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.scard-filter-right input {
+    padding: 6px 12px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+}
+
+.scard-table-wrapper {
+    background: #bfe6eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.scard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.scard-table th,
+.scard-table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.scard-table thead {
+    background: #79c7d3;
+}
+
+.scard-table tbody tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+.scard-pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.scard-pagination button {
+    background: #4b7bec;
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 15px;
+}
+
+.scard-page-num span {
+    background: #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.scard-page-num .active {
+    background: #4b7bec;
+    color: white;
+}
+.export-btn {
+    display: inline-flex;   /* 👈 VERY IMPORTANT */
+
+    align-items: center; 
+    justify-content: center;
+
+    background: #51fd51;
+    color: black;
+    border: none;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.export-btn:hover {
+    background: #9bff9b;
+}
+
+.export-icon {
+    width: 16px;
+    height: 16px;
+}
+.scard-pagination {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between; /* LEFT - CENTER - RIGHT */
+    align-items: center;
+}
+
+/* LEFT & RIGHT BUTTONS */
+.scard-pagination .prev,
+.scard-pagination .next {
+    background: #1fa3d8;
+    border: none;
+    padding: 6px 18px;
+    border-radius: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+/* CENTER PAGE NUMBER */
+.scard-page-num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* para ma center gyud */
+}
+
+.scard-page-num span {
+    border: 1px solid #555;
+    padding: 4px 10px;
+    margin: 0 3px;
+    color: black;
+    border-radius: 4px;
+}
+
+/* ACTIVE PAGE */
+.scard-page-num .active {
+    background: #1fa3d8;
+    color: black;
+}
+
+/*merchandise design*/
+.merch-ui{
+    position: relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+}
+
+.merch-cards{
+    display:flex;
+    gap:40px;
+}
+
+.merch-card{
+    width:220px;
+    height:260px;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin-top: 100px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.merch-card:hover{
+    transform:scale(1.05);
+}
+
+.merch-card.green{
+    background:#48F25E;
+}
+
+.merch-card.blue{
+    background:#5A6BFF;
+}
+
+.merch-card img{
+    width:70px;
+    margin-bottom:10px;
+}
+
+.merch-card span{
+    font-size: 16px;      /* 👈 same size */
+    font-weight: 600;     /* 👈 same thickness */
+    text-align: center;
+    color: #000;          /* or white if needed */
+}
+
+/* POPUP FORM */
+.merch-form-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:none; /* important */
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.25);
+    z-index:9999;
+}
+
+.merch-popup{
+    background:rgba(255, 255, 255, 0.322); /* glass effect */
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255, 255, 255, 0.507);
+    border-radius:0px;
+
+    padding:20px;
+    width:260px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+}
+.merch-popup label{
+    display:block;
+    margin-top:10px;
+    font-size:14px;
+}
+
+.merch-popup input{
+    width:100%;
+    padding:7px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.merch-popup button{
+    margin-top:15px;
+    width:100%;
+    padding:6px;
+    background:#00FA60;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+.merch-history-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:bold;
+}
+
+.history-icon{
+    width:20px;
+    height:20px;
+}
+
+.merch-history-box{
+background:#f5f5f5;
+border-radius:10px;
+padding:15px;
+width:95%;
+margin:15px auto 0 auto;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+
+.merch-history-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+
+.merch-history-title{
+display:flex;
+align-items:center;
+gap:6px;
+background:#8EEEF9;
+padding:5px 10px;
+border-radius:6px;
+font-weight:bold;
+color:#2f2f2f;
+}
+
+.history-icon{
+width:18px;
+height:18px;
+}
+
+.merch-history-header input{
+    padding:5px 10px;
+    border-radius:10px;
+    border:1px solid #aaa;
+    width:200px !important;
+}
+
+.merch-table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+.merch-table th{
+    background:#d6d6d6;
+    padding:8px;
+    text-align:left;
+}
+
+.merch-table td{
+    padding:8px;
+    border-top:1px solid #ccc;
+}
+
+.actions button img{
+    width:18px;
+    height:18px;
+    cursor:pointer;
+}
+
+.actions button{
+    background:none;
+    border:none;
+    padding:5px;
+}
+
+.merch-pagination{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+}
+
+.merch-pagination button{
+    background:#3ea6d0;
+    border:none;
+    padding:5px 15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+.merch-popup input,
+.merch-popup select{
+    width:100%;
+    padding:7px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    background:white;
+}
+.merch-popup select{
+    cursor:pointer;
 }

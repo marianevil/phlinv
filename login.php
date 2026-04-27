@@ -37,7 +37,7 @@ if(isset($_SESSION['user'])){
         <h1>
             <span class="gold">PHILATELIC &</span><br>
             <span class="blue">STAMPS UNIT</span><br>
-            <span class="office">OFFICE</span>
+            <span class="office">SECTION</span>
         </h1>
 
     </div>
