@@ -2822,6 +2822,28 @@ body{
 .riraf-top-bar label {
     font-weight: bold;
 }
+
+.province-dropdown{
+    width:180px;
+    padding:6px 10px;
+    border-radius:8px;
+    border:1px solid #b5b5b5;
+    background:#f9f9f9;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.province-dropdown:hover{
+    border-color:#2f3cff;
+}
+
+.province-dropdown:focus{
+    outline:none;
+    border-color:#2f3cff;
+    box-shadow:0 0 4px rgba(47,60,255,0.3);
+}
+
 .masterlist-title{
     background:#ff4d4d;
     color:black;
@@ -3314,15 +3336,418 @@ height:18px;
     border-radius:10px;
     cursor:pointer;
 }
+
+/* =========================
+   EDIT DROPDOWN ENHANCEMENT
+========================= */
 .merch-popup input,
-.merch-popup select{
-    width:100%;
-    padding:7px;
-    margin-top:5px;
-    border-radius:6px;
-    border:1px solid #ccc;
-    background:white;
+.merch-popup select,
+.toa-modal-content select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    background: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
-.merch-popup select{
-    cursor:pointer;
+
+/* focus effect */
+.merch-popup select:focus,
+.toa-modal-content select:focus {
+    border-color: #3ea6d0;
+    box-shadow: 0 0 5px rgba(62,166,208,0.5);
+}
+
+/* hover */
+.merch-popup select:hover,
+.toa-modal-content select:hover {
+    border-color: #3ea6d0;
+}
+/* =========================
+   WRAPPER & CARD
+========================= */
+
+.admin-ml-wrapper {
+    padding: 20px;
+}
+
+.admin-ml-container {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.admin-ml-title {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+    display: inline-block;
+}
+
+/* =========================
+   FILTER BAR (1 ROW)
+========================= */
+
+.admin-ml-filter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+
+.admin-ml-filter select,
+.admin-ml-filter input {
+    height: 30px;
+    padding: 4px 8px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+/* widths para parehas sa screenshot */
+.admin-ml-filter select {
+    min-width: 150px;
+}
+
+.admin-ml-filter input[type="date"] {
+    width: 130px;
+}
+
+.admin-ml-filter input[type="text"] {
+    width: 180px;
+}
+
+.admin-ml-filter span {
+    font-size: 13px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.admin-ml-search {
+    background: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-ml-reset {
+    background: #dfe6e9;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.admin-ml-actions {
+    margin-bottom: 10px;
+}
+
+.admin-ml-export {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.admin-ml-delete {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.admin-ml-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: white;
+}
+
+/* HEADER */
+.admin-ml-table th {
+    background: #DEFCFE;
+    padding: 10px;
+    border: 1px solid #aabccf;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* BODY */
+.admin-ml-table td {
+    padding: 7px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+/* HOVER EFFECT */
+.admin-ml-table tr:hover {
+    background: #f5f6fa;
+}
+
+/* CHECKBOX */
+.admin-ml-table input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* =========================
+   ACTION BUTTONS SA TABLE
+========================= */
+
+.admin-ml-edit {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 4px 7px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin-ml-delete-row {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 4px 7px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* =========================
+   PAGINATION + INFO (OPTIONAL)
+========================= */
+
+.admin-ml-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.admin-ml-pagination button {
+    padding: 4px 8px;
+    margin: 0 2px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+}
+
+.admin-ml-pagination button.active {
+    background: #6c5ce7;
+    color: white;
+    border: none;
+}
+
+/* =========================
+   FIX BACKGROUND ISSUE
+========================= */
+
+.main-content {
+    padding: 20px;
+}
+
+.approve {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.reject {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.status-dropdown {
+    padding: 5px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/* COLORS BASED ON STATUS */
+.status-dropdown.pending {
+    background: #FFF3CD;
+    color: #856404;
+}
+
+.status-dropdown.approved {
+    background: #D4EDDA;
+    color: #155724;
+}
+
+.status-dropdown.rejected {
+    background: #F8D7DA;
+    color: #721C24;
+}
+
+/* =========================
+   HISTORY FLOAT PANEL
+========================= */
+.history-panel{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    display: none;
+    flex-direction: column;
+    z-index: 99999;
+}
+
+/* HEADER */
+.history-panel-header{
+    
+    background: #1f2a44;
+    color: white;
+    padding: 5px 2px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 16px;
+    align-items: center;
+}
+
+/* BODY */
+.history-panel-body{
+    padding: 15px;
+    max-height: 72vh;
+    overflow: auto;
+}
+
+/* =========================
+   TABLE BASE
+========================= */
+.history-table{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* 🔥 IMPORTANT para pantay columns */
+    font-size: 14px;
+}
+
+/* HEADER */
+.history-table th{
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* CELLS */
+.history-table td{
+    border: 1px solid #eee;
+    padding: 10px;
+    vertical-align: top;
+    white-space: pre-line; /* para multiline OLD/NEW */
+    word-wrap: break-word;
+}
+
+/* =========================
+   COLUMN WIDTHS
+========================= */
+
+/* ACTIONS */
+.history-table th:nth-child(1),
+.history-table td:nth-child(1){
+    width: 10%;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* OLD DETAILS */
+.history-table th:nth-child(2),
+.history-table td:nth-child(2){
+    width: 35%;
+}
+
+/* NEW DETAILS */
+.history-table th:nth-child(3),
+.history-table td:nth-child(3){
+    width: 35%;
+}
+
+/* DATE */
+.history-table th:nth-child(4),
+.history-table td:nth-child(4){
+    width: 20%;
+    text-align: center;
+}
+/* =========================
+   HISTORY PAGINATION
+========================= */
+.history-pagination {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.history-pagination button {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: none;
+    background: #3ea6d0;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* hover */
+.history-pagination button:hover {
+    background: #1f2a44;
+}
+
+/* disabled state */
+.history-pagination button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+#historySearch{
+    width: 50%;
+    max-width: 300px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
 }

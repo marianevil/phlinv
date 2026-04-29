@@ -1,0 +1,128 @@
+.req-page-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f4f6f9;
+}
+
+/* CARD */
+.req-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* HEADER */
+.req-card-header {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* GRID FORM */
+.req-form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.req-field label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.req-field input,
+.req-field select,
+.req-field textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.req-field-full {
+    grid-column: span 4;
+}
+
+.req-field-full textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* ACTION BUTTONS */
+.req-actions {
+    grid-column: span 4;
+    text-align: right;
+}
+
+.req-btn-primary {
+    background: #0d6efd;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.req-btn-secondary {
+    background: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* TABLE */
+.req-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.req-table th,
+.req-table td {
+    border: 1px solid #eee;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.req-badge {
+    background: orange;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.req-table thead {
+    background: #DEFCFE; /* imong preferred color */
+}
+
+.req-table th {
+    text-align: left;
+    font-weight: 600;
+}
+
+.req-view {
+    background: #0d6efd;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.req-delete {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}

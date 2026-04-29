@@ -1,0 +1,279 @@
+/* WRAPPER */
+.req-wrapper {
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 95%;
+}
+
+/* TOP BAR */
+.req-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* FILTER TABS */
+.req-tab {
+    margin-right: 10px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #eef1f5;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.req-tab.active {
+    background: #007bff;
+    color: #fff;
+}
+
+/* SEARCH */
+.req-search input {
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* TABLE */
+.req-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.req-table th {
+    background: #f1f3f6;
+    padding: 10px;
+    text-align: left;
+    font-size: 12px;
+    color: #555;
+}
+
+.req-table td {
+    padding: 10px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+}
+
+/* STATUS BADGE */
+.req-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.req-badge.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.req-badge.approved {
+    background: #d4edda;
+    color: #155724;
+}
+
+.req-badge.rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ACTION BUTTONS */
+.req-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-approve {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-reject {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* TOP BAR */
+.req-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* TABS */
+.req-tab {
+    margin-right: 10px;
+    padding: 6px 12px;
+    background: #eee;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.req-tab.active {
+    background: #007bff;
+    color: #fff;
+}
+
+/* SEARCH */
+.req-search input {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* TABLE */
+.req-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.req-table th {
+    background: #f1f3f6;
+    text-align: left;
+    font-size: 12px;
+    color: #555;
+    padding: 10px;
+}
+
+.req-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+/* STATUS BADGE */
+.req-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.req-badge.pending { background: #fff3cd; }
+.req-badge.approved { background: #d4edda; }
+.req-badge.rejected { background: #f8d7da; }
+.req-badge.released { background: #cce5ff; }
+
+/* BUTTON */
+.btn-view {
+    background: #17a2b8;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ================================= */
+/* 🔥 DETAILS PANEL (MAIN FIX) */
+/* ================================= */
+
+.req-details {
+    display: none; /* hidden by default */
+    margin-top: 15px;
+
+    grid-template-columns: 2.5fr 1fr 1.2fr;
+    gap: 15px;
+}
+
+.req-details.show {
+    display: grid; /* mugawas pag click */
+}
+/* LEFT SIDE (REQUEST DETAILS) */
+.req-left {
+    width: 100%;
+}
+
+.req-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* CARD STYLE */
+.req-card {
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+/* TITLE */
+.req-card h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* GRID (DETAILS CONTENT) */
+.req-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.req-grid div {
+    line-height: 1.4;
+}
+
+/* ACTION BUTTONS */
+.btn-approve {
+    width: 100%;
+    background: #28a745;
+    color: #fff;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.btn-reject {
+    width: 100%;
+    background: #dc3545;
+    color: #fff;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* RELEASE FORM */
+.req-card label {
+    font-size: 12px;
+    display: block;
+    margin-top: 8px;
+}
+
+.req-card input {
+    width: 100%;
+    margin-top: 5px;
+    padding: 6px;
+    font-size: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* RELEASE BUTTON */
+.btn-release {
+    width: 100%;
+    margin-top: 10px;
+    background: #007bff;
+    color: #fff;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

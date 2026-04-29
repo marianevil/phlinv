@@ -3,8 +3,10 @@ include 'connection.php';
 
 $province = $_GET['province'] ?? '';
 
-$stmt = $conn->prepare("SELECT name FROM riraf_postoffice WHERE province=? ORDER BY name ASC");
-$stmt->bind_param("s",$province);
+$sql = "SELECT name FROM riraf_postoffice WHERE province = ? ORDER BY name ASC";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $province);
 $stmt->execute();
 
 $result = $stmt->get_result();

@@ -30,6 +30,7 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : 'ADMIN';
         <a href="stockcard.php" class="<?= ($current_page == 'stockcard.php') ? 'active' : '' ?>">STOCK CARD</a>
         <a href="deno.php" class="<?= ($current_page == 'deno.php') ? 'active' : '' ?>">DENO</a>
         <a href="masterlistdata.php" class="<?= ($current_page == 'masterlistdata.php') ? 'active' : '' ?>">MASTER LIST DATA</a>
+        <a href="request.php" class="<?= ($current_page == 'request.php') ? 'active' : '' ?>">REQUEST DISTRIBUTION</a>
 
         <!-- Admin Dropdown (dynamic username) -->
         <div class="dropdown">

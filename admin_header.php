@@ -14,20 +14,16 @@ $username = $_SESSION['user'];
 
 <body class="accountable-body">
 
-<!-- HEADER (LOGO ONLY) -->
 <header class="header">
     <div class="logo">
-        <img src="images/phlpost_logo.png" class="logo-img" alt="Logo">
+        <img src="images/phlpost_logo.png" class="logo-img">
     </div>
 </header>
 
-<!-- LAYOUT -->
 <div class="layout">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar collapsed">
 
-        <!-- MENU -->
         <ul class="sidebar-menu">
 
             <li>
@@ -36,6 +32,7 @@ $username = $_SESSION['user'];
                     <span>MENU</span>
                 </a>
             </li>
+
             <li>
                 <a href="admin_dashboard.php">
                     <img src="images/dashboard.png" class="side-icon">
@@ -58,32 +55,36 @@ $username = $_SESSION['user'];
             </li>
 
             <li>
-                <a href="masterlistdata.php">
+                <a href="masterlist_admin.php">
                     <img src="images/masterlist.png" class="side-icon">
                     <span>MASTER LIST DATA</span>
                 </a>
             </li>
 
+            <li>
+                <a href="approve_requests.php">
+                    <img src="images/approve.png" class="side-icon">
+                    <span>APPROVE & RELEASE</span>
+                </a>
+            </li>
+
         </ul>
 
-        <!-- ADMIN SECTION (PINAKA UBOS) -->
         <div class="sidebar-admin">
-
             <div class="admin-info">
                 <img src="images/admin_icon.png" class="admin-icon">
                 <span><?php echo htmlspecialchars($username); ?></span>
             </div>
 
             <a href="logout.php" class="logout-btn">Logout</a>
-
         </div>
 
     </aside>
 
-    <!-- MAIN CONTENT START -->
     <main class="main-content">
+
 <script>
-    function toggleSidebar() {
-        document.querySelector('.sidebar').classList.toggle('collapsed');
+function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('collapsed');
 }
 </script>

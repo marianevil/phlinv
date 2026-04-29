@@ -28,7 +28,7 @@ include 'header.php';
 
 <div class="input-group">
 <label>Province:</label>
-<select name="province" required>
+<select name="province" id="provinceSelect" required>
 
 <option value="" selected hidden>Select Province</option>
 
@@ -63,9 +63,9 @@ while($row = $query->fetch_assoc()){
 <div class="input-group">
 <label>Post Office Name:</label>
 
-<select name="post_office" required>
-
+<select name="post_office" id="postOffice" required>
 <option value="" selected hidden>Select Post Office</option>
+
 
 <?php
 $query = $conn->query("SELECT name FROM riraf_postoffice ORDER BY name ASC");
@@ -644,6 +644,44 @@ amountWords.value = "";
 deno.addEventListener("change", calculatePostage);
 qty.addEventListener("input", calculatePostage);
 weighted.addEventListener("input", calculatePostage);
+
+const provinceSelect = document.getElementById("provinceSelect");
+const postOffice = document.getElementById("postOffice");
+
+provinceSelect.addEventListener("change", function(){
+
+    let province = this.value;
+
+    fetch("db/load_postoffice_by_province.php?province=" + encodeURIComponent(province))
+    .then(res => res.json())
+    .then(data => {
+
+        postOffice.innerHTML =
+        `<option value="" hidden>Select Post Office</option>`;
+
+        if(data.length){
+
+            data.forEach(row => {
+
+                postOffice.innerHTML += `
+                    <option value="${row.name}">
+                        ${row.name}
+                    </option>
+                `;
+
+            });
+
+        }else{
+
+            postOffice.innerHTML += `
+                <option value="">No Post Office Found</option>
+            `;
+
+        }
+
+    });
+
+});
 
 </script>
 
