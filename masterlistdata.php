@@ -1,4 +1,38 @@
-<?php include 'header.php'; ?>
+<?php
+include 'db/connection.php';
+include 'header.php';
+
+// FILTER
+$provinceFilter = $_GET['province'] ?? '';
+
+// PAGINATION
+$rowsPerPage = 10;
+$currentPage = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+
+// WHERE CONDITION
+$where = "";
+if($provinceFilter != "" && $provinceFilter != "Select Province"){
+    $safeProvince = $conn->real_escape_string($provinceFilter);
+    $where = "WHERE province = '$safeProvince'";
+}
+
+// COUNT TOTAL
+$totalQuery = $conn->query("SELECT COUNT(*) AS total FROM riraf_records $where");
+$totalRow = $totalQuery->fetch_assoc();
+$totalRows = $totalRow['total'];
+
+$totalPages = ceil($totalRows / $rowsPerPage);
+$offset = ($currentPage - 1) * $rowsPerPage;
+
+// FETCH DATA
+$query = $conn->query("
+    SELECT *
+    FROM riraf_records
+    $where
+    ORDER BY date DESC
+    LIMIT $offset, $rowsPerPage
+");
+?>
 
 <link rel="stylesheet" href="masterlist.css">
 
@@ -10,41 +44,49 @@
 
 <div class="masterlist-card">
 
-    <!-- Province Dropdown -->
-<div class="filter-row">
-    
-    <!-- LEFT SIDE -->
-    <div class="filter-left">
-        <label>Province:</label>
-        <select>
-            <option>Select Province</option>
-            <option>Bukidnon</option>
-            <option>Zamboanga Sibugay</option>
-            <option>Zamboanga del Sur</option>
-        </select>
-    </div>
+    <!-- FILTER ROW -->
+    <form method="GET">
+        <div class="filter-row">
+            
+            <div class="filter-left">
+                <label>Province:</label>
+                <select name="province" onchange="this.form.submit()">
+                    <option value="">Select Province</option>
 
-    <!-- RIGHT SIDE -->
-<div class="filter-right">
-    <button class="export-btn">
-        <img src="images/excel.png" alt="Export">
-        Export Excel
-    </button>
-</div>
+                    <?php
+                    $provQuery = $conn->query("SELECT name FROM riraf_province ORDER BY name ASC");
 
-</div>
+                    while($prov = $provQuery->fetch_assoc()){
+                        $selected = ($provinceFilter == $prov['name']) ? "selected" : "";
+                        echo "<option value='".htmlspecialchars($prov['name'])."' $selected>
+                                ".htmlspecialchars($prov['name'])."
+                            </option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
-    <!-- Table Header -->
+            <div class="filter-right">
+                <button type="button" class="export-btn">
+                    <img src="images/excel.png">
+                    Export Excel
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- HEADER -->
     <div class="table-header">
         <h3>Province</h3>
 
         <div class="table-search">
-            <input type="text" placeholder="Search...">
+            <input type="text" id="searchInput" placeholder="Search...">
         </div>
     </div>
 
-    <!-- Table -->
-    <table class="masterlist-table">
+    <!-- TABLE -->
+    <table class="masterlist-table" id="masterTable">
 
         <thead>
             <tr>
@@ -58,63 +100,90 @@
             </tr>
         </thead>
 
-        <tbody>
+            <tbody>
+            <?php
+            if($query->num_rows > 0){
 
-            <tr>
-                <td>1/20/2016</td>
-                <td rowspan="4">Zamboanga Sibugay</td>
-                <td>Tungawan PO</td>
-                <td>Postage Stamp</td>
-                <td>0001</td>
-                <td>7018</td>
-                <td>Manila</td>
-            </tr>
+                $currentProvince = "";
+                $provinceCounts = [];
 
-            <tr>
-                <td>6/16/2017</td>
-                <td>Ipil Post Office</td>
-                <td>Postage Stamp</td>
-                <td>0225</td>
-                <td>7001</td>
-                <td>Manila</td>
-            </tr>
+                // 👉 STEP 1: Count rows per province
+                $tempQuery = $conn->query("
+                    SELECT province, COUNT(*) as total
+                    FROM riraf_records
+                    $where
+                    GROUP BY province
+                ");
 
-            <tr>
-                <td>3/20/2018</td>
-                <td>Imelda Post Office</td>
-                <td>Postage Stamp</td>
-                <td>4350</td>
-                <td>7007</td>
-                <td>Manila</td>
-            </tr>
+                while($rowCount = $tempQuery->fetch_assoc()){
+                    $provinceCounts[$rowCount['province']] = $rowCount['total'];
+                }
 
-            <tr>
-                <td>8/24/2019</td>
-                <td>Buug PO</td>
-                <td>Postage Stamp</td>
-                <td>2214</td>
-                <td>7009</td>
-                <td>Manila</td>
-            </tr>
+                // 👉 STEP 2: Loop main data
+                while($row = $query->fetch_assoc()){
 
-        </tbody>
+                    echo "<tr>";
+
+                    echo "<td>".$row['date']."</td>";
+
+                    // 👉 SHOW province only first time
+                    if($currentProvince != $row['province']){
+                        $rowspan = $provinceCounts[$row['province']];
+                        echo "<td rowspan='$rowspan'>".$row['province']."</td>";
+                        $currentProvince = $row['province'];
+                    }
+
+                    echo "<td>".$row['post_office']."</td>";
+                    echo "<td>".$row['type_accounts']."</td>";
+                    echo "<td>".$row['inv_no']."</td>";
+                    echo "<td>".($row['zip_code'] ?? '-')."</td>";
+                    echo "<td>".($row['delivered_office'] ?? '-')."</td>";
+
+                    echo "</tr>";
+                }
+
+            } else {
+                echo "<tr><td colspan='7'>No records found</td></tr>";
+            }
+            ?>
+            </tbody>
 
     </table>
 
-    <!-- Pagination -->
+    <!-- PAGINATION -->
     <div class="pagination">
 
-        <button class="prev">PREVIOUS</button>
+        <button class="prev"
+            <?php if($currentPage <= 1) echo "disabled"; ?>
+            onclick="window.location='?province=<?php echo urlencode($provinceFilter) ?>&page=<?php echo $currentPage-1 ?>'">
+            PREVIOUS
+        </button>
 
         <div class="page-num">
-            <span class="active">1</span>
-           
+            <span class="active"><?php echo $currentPage ?></span>
         </div>
 
-        <button class="next">NEXT</button>
+        <button class="next"
+            <?php if($currentPage >= $totalPages) echo "disabled"; ?>
+            onclick="window.location='?province=<?php echo urlencode($provinceFilter) ?>&page=<?php echo $currentPage+1 ?>'">
+            NEXT
+        </button>
 
     </div>
 
 </div>
 
 </main>
+
+<!-- SEARCH FUNCTION -->
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    let value = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#masterTable tbody tr");
+
+    rows.forEach(row => {
+        let text = row.innerText.toLowerCase();
+        row.style.display = text.includes(value) ? "" : "none";
+    });
+});
+</script>

@@ -2,289 +2,232 @@
 
 <main class="dashboard-bg">
 
-    <div class="stock-header">
-        <h2>STOCK CARD</h2>
-        <div class="search-field">
-            <label for="searchProvince">Search Province:</label>
-            <input type="text" id="searchProvince" placeholder="Enter province">
-        </div>
-        <div class="search-date-top">
-            <label for="searchDate">Search Date:</label>
-            <input type="date" id="searchDate">
-        </div>
+<div class="stock-header">
+    <h2>STOCK CARD</h2>
+
+    <div class="search-field">
+        <label for="searchProvince">Search Province:</label>
+        <input type="text" id="searchProvince" placeholder="Enter province">
     </div>
 
-    <div class="stock-container">
-
-    <!-- LEFT PANEL -->
-    <div class="stock-left">
-        <h3>LOCATION</h3>
-
-        <button class="stock-btn others toggle-btn">
-       Butuan <span class="arrow">›</span>
-    </button>
-    <div class="dropdown-items">
-        <h3>Types of Stock Card</h3>
-        <button class="stock-btn sub">Postage Stamps</button>
-        <button class="stock-btn sub">Philatelic Stamps</button>
-        <button class="stock-btn sub">Money Order</button>
-        <button class="stock-btn sub">Official Receipt</button>
-        <button class="stock-btn sub">Acknowledgement Receipt</button>
-        <button class="stock-btn sub">Philpost Mailing Stamps</button>
-       <!-- Others sub button with its own dropdown -->
-        <div class="sub-dropdown-container" style="position: relative;">
-       <button class="stock-btn sub sub-toggle-btn">
-            Others <span class="arrow">›</span>
-        </button>
-        <div class="dropdown-items sub-dropdown">
-            <button class="stock-btn sub">Gummed Tape</button>
-            <button class="stock-btn sub">Sales Invoice</button>
-        </div>
-    </div>
-    </div>
-
-    <!-- Butuan -->
-    <button class="stock-btn others toggle-btn">
-       Don Carlos <span class="arrow">›</span>
-    </button>
-    <div class="dropdown-items">
-        <h3>Types of Stock Card</h3>
-        <button class="stock-btn sub">Postage Stamps</button>
-        <button class="stock-btn sub">Philatelic Stamps</button>
-        <button class="stock-btn sub">Money Order</button>
-        <button class="stock-btn sub">Official Receipt</button>
-        <button class="stock-btn sub">Acknowledgement Receipt</button>
-        <button class="stock-btn sub">Philpost Mailing Stamps</button>
-        <!-- Others sub button with its own dropdown -->
-    <div class="sub-dropdown-container" style="position: relative;">
-        <button class="stock-btn sub sub-toggle-btn">
-            Others <span class="arrow">›</span>
-        </button>
-        <div class="dropdown-items sub-dropdown">
-            <button class="stock-btn sub">Gummed Tape</button>
-            <button class="stock-btn sub">Sales Invoice</button>
-        </div>
-    </div>
-    </div>
-        <button class="stock-btn others toggle-btn">
-        Iligan CPO <span class="arrow">›</span>
-    </button>
-    <div class="dropdown-items">
-        <h3>Types of Stock Card</h3>
-        <button class="stock-btn sub">Postage Stamps</button>
-        <button class="stock-btn sub">Philatelic Stamps</button>
-        <button class="stock-btn sub">Money Order</button>
-        <button class="stock-btn sub">Official Receipt</button>
-        <button class="stock-btn sub">Acknowledgement Receipt</button>
-        <button class="stock-btn sub">Philpost Mailing Stamps</button>
-        <!-- Others sub button with its own dropdown -->
-    <div class="sub-dropdown-container" style="position: relative;">
-        <button class="stock-btn sub sub-toggle-btn">
-            Others <span class="arrow">›</span>
-        </button>
-        <div class="dropdown-items sub-dropdown">
-            <button class="stock-btn sub">Gummed Tape</button>
-            <button class="stock-btn sub">Sales Invoice</button>
-        </div>
-    </div>
-    </div>
-
-    <!-- Butuan -->
-    <button class="stock-btn others toggle-btn">
-        Macabalan <span class="arrow">›</span>
-    </button>
-    <div class="dropdown-items updrop">
-        <h3>Types of Stock Card</h3>
-        <button class="stock-btn sub">Postage Stamps</button>
-        <button class="stock-btn sub">Philatelic Stamps</button>
-        <button class="stock-btn sub">Money Order</button>
-        <button class="stock-btn sub">Official Receipt</button>
-        <button class="stock-btn sub">Acknowledgement Receipt</button>
-        <button class="stock-btn sub">Philpost Mailing Stamps</button>
-        <!-- Others sub button with its own dropdown -->
-    <div class="sub-dropdown-container" style="position: relative;">
-        <button class="stock-btn sub sub-toggle-btn">
-            Others <span class="arrow">›</span>
-        </button>
-        <div class="dropdown-items sub-dropdown">
-            <button class="stock-btn sub">Gummed Tape</button>
-            <button class="stock-btn sub">Sales Invoice</button>
-        </div>
-    </div>
-    </div>
-        <button class="stock-btn others toggle-btn">
-        Manticao <span class="arrow">›</span>
-    </button>
-    <div class="dropdown-items updrop">
-        <h3>Types of Stock Card</h3>
-        <button class="stock-btn sub">Postage Stamps</button>
-        <button class="stock-btn sub">Philatelic Stamps</button>
-        <button class="stock-btn sub">Money Order</button>
-        <button class="stock-btn sub">Official Receipt</button>
-        <button class="stock-btn sub">Acknowledgement Receipt</button>
-        <button class="stock-btn sub">Philpost Mailing Stamps</button>
-        <!-- Others sub button with its own dropdown -->
-    <div class="sub-dropdown-container" style="position: relative;">
-        <button class="stock-btn sub sub-toggle-btn">
-            Others <span class="arrow">›</span>
-        </button>
-        <div class="dropdown-items sub-dropdown">
-            <button class="stock-btn sub">Gummed Tape</button>
-            <button class="stock-btn sub">Sales Invoice</button>
-        </div>
-    </div>
-    </div>
-
-    <!-- Butuan -->
-    <button class="stock-btn others toggle-btn">
-        Medina <span class="arrow">›</span>
-    </button>
-    <div class="dropdown-items updrop">
-        <h3>Types of Stock Card</h3>
-        <button class="stock-btn sub">Postage Stamps</button>
-        <button class="stock-btn sub">Philatelic Stamps</button>
-        <button class="stock-btn sub">Money Order</button>
-        <button class="stock-btn sub">Official Receipt</button>
-        <button class="stock-btn sub">Acknowledgement Receipt</button>
-        <button class="stock-btn sub">Philpost Mailing Stamps</button>
-<!-- Others sub button with its own dropdown -->
-    <div class="sub-dropdown-container" style="position: relative;">
-       <button class="stock-btn sub sub-toggle-btn">
-            Others <span class="arrow">›</span>
-        </button>
-        <div class="dropdown-items sub-dropdown">
-            <button class="stock-btn sub">Gummed Tape</button>
-            <button class="stock-btn sub">Sales Invoice</button>
-        </div>
-    </div>
-    </div>
-
-     <!-- Butuan -->
-    <button class="stock-btn others toggle-btn">
-        Tamparan <span class="arrow">›</span>
-    </button>
-    <div class="dropdown-items updrop">
-        <h3>Types of Stock Card</h3>
-        <button class="stock-btn sub">Postage Stamps</button>
-        <button class="stock-btn sub">Philatelic Stamps</button>
-        <button class="stock-btn sub">Money Order</button>
-        <button class="stock-btn sub">Official Receipt</button>
-        <button class="stock-btn sub">Acknowledgement Receipt</button>
-        <button class="stock-btn sub">Philpost Mailing Stamps</button>
-        <!-- Others sub button with its own dropdown -->
-    <div class="sub-dropdown-container" style="position: relative;">
-        <button class="stock-btn sub sub-toggle-btn">
-            Others <span class="arrow">›</span>
-        </button>
-        <div class="dropdown-items sub-dropdown">
-            <button class="stock-btn sub">Gummed Tape</button>
-            <button class="stock-btn sub">Sales Invoice</button>
+    <div class="search-date-top">
+        <label for="searchDate">Search Date:</label>
+        <input type="date" id="searchDate">
     </div>
 </div>
-    </div>
-        
+
+<div class="stock-container">
+
+    <!-- LEFT -->
+    <div class="stock-left">
+        <h3>LOCATIONS</h3>
+        <div id="locationPanel"></div>
     </div>
 
-    <!-- CENTER PANEL -->
+    <!-- CENTER -->
     <div class="stock-center">
         <h3>STOCK CARD RECORD DISPLAY</h3>
-
-        <div class="record-row"></div>
-        <div class="record-row"></div>
-        <div class="record-row"></div>
-        <div class="record-row"></div>
-        <div class="record-row"></div>
-        <div class="record-row"></div>
-        <div class="record-row"></div>
+        <div id="stockList"></div>
     </div>
 
-    <!-- RIGHT PANEL -->
+    <!-- RIGHT -->
     <div class="stock-right">
         <h3>DATE</h3>
-
-        <div class="date-box"></div>
-        <div class="date-box"></div>
-        <div class="date-box"></div>
-        <div class="date-box"></div>
-        <div class="date-box"></div>
-        <div class="date-box"></div>
-        <div class="date-box"></div>
+        <div id="dateList"></div>
     </div>
 
 </div>
-
-
 </main>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll(".toggle-btn");
 
-    buttons.forEach(button => {
-        button.addEventListener("click", function(e) {
-            e.stopPropagation(); // Prevent click from bubbling
+let selectedProvince = "";
+let selectedLocation = "";
 
-            // Close all other dropdowns
-            buttons.forEach(btn => {
-                if (btn !== this) {
-                    btn.classList.remove("active");
-                    const otherDropdown = btn.nextElementSibling;
-                    if (otherDropdown) otherDropdown.style.display = "none";
+
+
+/* ================= SAFE FETCH (IMPORTANT) ================= */
+async function fetchJSON(url) {
+    const res = await fetch(url);
+    const text = await res.text();
+
+    try {
+        return JSON.parse(text);
+    } catch (err) {
+        console.error("❌ INVALID JSON FROM:", url);
+        console.error("RESPONSE WAS:\n", text);
+        throw err;
+    }
+}
+
+/* ================= PROVINCE SEARCH ================= */
+document.getElementById("searchProvince").addEventListener("input", async function () {
+
+    selectedProvince = this.value;
+
+    // ✅ CLEAR previous display
+    document.getElementById("stockList").innerHTML = "";
+    document.getElementById("dateList").innerHTML = "";
+
+    try {
+        const data = await fetchJSON("db/search_province.php?province=" + encodeURIComponent(selectedProvince));
+
+        const panel = document.getElementById("locationPanel");
+        panel.innerHTML = "";
+
+        data.forEach(item => {
+
+            const container = document.createElement("div");
+            container.className = "dropdown-container";
+
+            const btn = document.createElement("button");
+            btn.className = "stock-btn others toggle-btn";
+            btn.innerHTML = `
+                ${item.post_office}
+                <img src="images/arrow.png" class="arrow-icon">
+            `;
+
+            const dropdown = document.createElement("div");
+            dropdown.className = "dropdown-items";
+
+            btn.onclick = () => {
+
+                selectedLocation = item.post_office;
+                console.log("LOCATION:", selectedLocation);
+
+                const isOpen = dropdown.classList.contains("show");
+
+                document.querySelectorAll(".dropdown-items").forEach(d => d.classList.remove("show"));
+                document.querySelectorAll(".toggle-btn").forEach(b => b.classList.remove("active"));
+
+                if (!isOpen) {
+                    dropdown.classList.add("show");
+                    btn.classList.add("active");
+                    loadTypes(dropdown, selectedLocation);
                 }
-            });
+            };
 
-            // Toggle clicked dropdown
-            const dropdown = this.nextElementSibling;
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
-                this.classList.remove("active");
-            } else {
-                dropdown.style.display = "block";
-                this.classList.add("active");
-            }
+            container.appendChild(btn);
+            container.appendChild(dropdown);
+            panel.appendChild(container);
         });
-    });
 
-    // Close dropdowns if clicking outside
-    document.addEventListener('click', function() {
-        buttons.forEach(btn => {
-            btn.classList.remove("active");
-            const dropdown = btn.nextElementSibling;
-            if (dropdown) dropdown.style.display = "none";
-        });
-    });
+    } catch (e) {
+        console.error("Failed loading provinces");
+    }
 });
 
-// Sub button dropdowns
-document.querySelectorAll(".sub-dropdown-container .sub-toggle-btn").forEach(button => {
-    button.addEventListener("click", function(e) {
-        e.stopPropagation(); // prevent parent dropdown from closing
+/* ================= LOAD TYPES ================= */
+async function loadTypes(dropdown, location) {
 
-        // Close other sub-dropdowns in the same location
-        const parentDropdown = this.closest(".dropdown-items");
-        parentDropdown.querySelectorAll(".sub-dropdown").forEach(dd => {
-            if(dd !== this.nextElementSibling) dd.style.display = "none";
-        });
-        parentDropdown.querySelectorAll(".sub-toggle-btn").forEach(btn => {
-            if(btn !== this) btn.classList.remove("active");
+    try {
+        const data = await fetchJSON(`db/get_types.php?province=${selectedProvince}&location=${location}`);
+
+        dropdown.innerHTML = "";
+
+        const title = document.createElement("div");
+        title.className = "dropdown-title";
+        title.innerHTML = "TYPE OF ACCOUNTS";
+        dropdown.appendChild(title);
+
+        data.forEach(item => {
+
+            const btn = document.createElement("button");
+            btn.className = "stock-btn sub";
+            btn.innerHTML = item.type_accounts;
+
+            btn.onclick = () => {
+                console.log("TYPE CLICK:", item.type_accounts);
+                loadStockCard(item.type_accounts, location);
+            };
+
+            dropdown.appendChild(btn);
         });
 
-        // Toggle this sub-dropdown
-        const dropdown = this.nextElementSibling;
-        if(dropdown.style.display === "block") {
-            dropdown.style.display = "none";
-            this.classList.remove("active");
-        } else {
-            dropdown.style.display = "block";
-            this.classList.add("active");
+    } catch (e) {
+        console.error("Failed loading types");
+    }
+}
+
+/* ================= LOAD STOCK CARD ================= */
+async function loadStockCard(type, location) {
+
+    console.log("LOAD:", type, location);
+
+    try {
+        const data = await fetchJSON(
+            `db/load_stockcard.php?province=${selectedProvince}&location=${location}&type=${type}`
+        );
+
+        const stockList = document.getElementById("stockList");
+        const dateList = document.getElementById("dateList");
+
+        if (!data || data.length === 0) {
+            return;
         }
-    });
-});
 
-// Close sub-dropdowns when clicking outside
-document.addEventListener("click", function() {
-    document.querySelectorAll(".sub-dropdown-container .sub-dropdown").forEach(dd => dd.style.display = "none");
-    document.querySelectorAll(".sub-dropdown-container .sub-toggle-btn").forEach(btn => btn.classList.remove("active"));
-});
+        // 👉 create unique ID per location
+        let cleanLocation = location.replace(/\s+/g, '');
+        let stockGroupId = "group-" + cleanLocation;
+        let dateGroupId = "group-date-" + cleanLocation;
+
+        let stockGroup = document.getElementById(stockGroupId);
+        let dateGroup = document.getElementById(dateGroupId);
+
+        // 👉 IF wala pa (new location) → CREATE
+        if (!stockGroup) {
+
+            stockGroup = document.createElement("div");
+            stockGroup.id = stockGroupId;
+            stockGroup.className = "location-group";
+
+            stockList.appendChild(stockGroup);
+
+            dateGroup = document.createElement("div");
+            dateGroup.id = dateGroupId;
+            dateGroup.className = "location-group";
+
+            dateList.appendChild(dateGroup);
+
+        } else {
+            // 👉 EXISTING location → REPLACE only this location
+            stockGroup.innerHTML = "";
+            dateGroup.innerHTML = "";
+        }
+
+        // 👉 local duplicate control per location
+        let localKeys = new Set();
+
+        data.forEach(item => {
+
+            let key = item.type_accounts + item.inv_no;
+
+            if (localKeys.has(key)) return;
+            localKeys.add(key);
+
+            stockGroup.innerHTML += `
+                <div class="record-row">
+                    <div class="box">
+                        ${item.type_accounts} - ${item.post_office} PO - ${item.inv_no || 'SC00'}
+                    </div>
+                </div>
+            `;
+
+            dateGroup.innerHTML += `
+                <div class="date-box">
+                    <div class="box">
+                        ${item.latest_date}
+                    </div>
+                </div>
+            `;
+        });
+
+    } catch (e) {
+        console.error("Failed loading stock card");
+    }
+}
+
 </script>
+
 </body>
 </html>
