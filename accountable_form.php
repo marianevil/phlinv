@@ -322,33 +322,73 @@ function selectField(type){
     const popup = document.createElement("div");
     popup.className = (type==="entry")?"riraf-popup entry-popup":"riraf-popup";
 
-    if(type==="entry"){
-        popup.innerHTML = `<div class="riraf-popup-box entry-layout">
-            <div class="entry-left">
-                <h3>Entry Form:</h3>
-                <label>PROVINCE:</label><input type="text" id="entryProvince">
-                <label>POST OFFICE NAME:</label><input type="text" id="entryPostOffice">
-                <label>DENO:</label><input type="text" id="entryDeno">
-                <label>KIND OF STAMPS:</label><input type="text" id="entryStamp">
-                <label>ITEM:</label><input type="text" id="entryItem">
-                <div class="popup-actions">
-                    <button class="bck-btn" onclick="closePopup()">BACK</button>
-                    <button class="sbmt-btn" onclick="submitEntry()">SUBMIT</button>
-                </div>
-            </div>
-            <div class="entry-right"></div>
-        </div>`;
-    } else {
-        let labelText = {"province":"Enter Province","postoffice":"Enter Post Office","denomination":"Enter Denomination","stamp":"Enter Stamp","item":"Enter Item"}[type];
-        popup.innerHTML = `<div class="riraf-popup-box">
-            <label>${labelText}</label>
-            <input type="text" id="dynamicInput" placeholder="${labelText}">
+if(type==="entry"){
+    popup.innerHTML = `<div class="riraf-popup-box entry-layout">
+        <div class="entry-left">
+            <h3>Entry Form:</h3>
+
+            <label>PROVINCE:</label>
+            <input type="text" id="entryProvince">
+
+            <label>POST OFFICE NAME:</label>
+            <input type="text" id="entryPostOffice">
+
+            <label>ZIP CODE:</label>
+            <input type="text" id="entryZip">
+
+            <label>DENO:</label>
+            <input type="text" id="entryDeno">
+
+            <label>KIND OF STAMPS:</label>
+            <input type="text" id="entryStamp">
+
+            <label>ITEM:</label>
+            <input type="text" id="entryItem">
+
             <div class="popup-actions">
                 <button class="bck-btn" onclick="closePopup()">BACK</button>
-                <button class="sbmt-btn" onclick="submitDynamic('${type}')">SUBMIT</button>
+                <button class="sbmt-btn" onclick="submitEntry()">SUBMIT</button>
             </div>
-        </div>`;
-    }
+        </div>
+        <div class="entry-right"></div>
+    </div>`;
+}
+
+/* ✅ NEW POST OFFICE FORM */
+else if(type==="postoffice"){
+    popup.innerHTML = `<div class="riraf-popup-box">
+
+        <label>Post Office Name</label>
+        <input type="text" id="poName">
+
+        <label>Zip Code</label>
+        <input type="text" id="poZip">
+
+        <div class="popup-actions">
+            <button class="bck-btn" onclick="closePopup()">BACK</button>
+            <button class="sbmt-btn" onclick="submitPostOffice()">SUBMIT</button>
+        </div>
+
+    </div>`;
+}
+
+else{
+    let labelText = {
+        "province":"Enter Province",
+        "denomination":"Enter Denomination",
+        "stamp":"Enter Stamp",
+        "item":"Enter Item"
+    }[type];
+
+    popup.innerHTML = `<div class="riraf-popup-box">
+        <label>${labelText}</label>
+        <input type="text" id="dynamicInput" placeholder="${labelText}">
+        <div class="popup-actions">
+            <button class="bck-btn" onclick="closePopup()">BACK</button>
+            <button class="sbmt-btn" onclick="submitDynamic('${type}')">SUBMIT</button>
+        </div>
+    </div>`;
+}
     document.querySelector(".riraf-ui").appendChild(popup);
 }
 function submitDynamic(type){
@@ -400,8 +440,9 @@ function submitEntry(){
     const d = document.getElementById("entryDeno").value.trim();
     const s = document.getElementById("entryStamp").value.trim();
     const i = document.getElementById("entryItem").value.trim();
+    const z = document.getElementById("entryZip").value.trim();
 
-    if(!p||!po||!d||!s||!i){
+    if(!p||!po||!z||!d||!s||!i){
         alert("All fields required");
         return;
     }
@@ -409,7 +450,13 @@ function submitEntry(){
     fetch('db/add_riraf.php',{
         method:'POST',
         headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:`type=entry&province=${encodeURIComponent(p)}&postOffice=${encodeURIComponent(po)}&deno=${encodeURIComponent(d)}&stamp=${encodeURIComponent(s)}&item=${encodeURIComponent(i)}`
+        body:`type=entry
+        &province=${encodeURIComponent(p)}
+        &postOffice=${encodeURIComponent(po)}
+        &zip=${encodeURIComponent(z)}
+        &deno=${encodeURIComponent(d)}
+        &stamp=${encodeURIComponent(s)}
+        &item=${encodeURIComponent(i)}`
     })
     .then(res=>res.text())
     .then(res=>{
@@ -508,38 +555,29 @@ function updateRirafTable(){
 
                 headers += `
                     <th>POST OFFICE NAME</th>
+                    <th>ZIP CODE</th>
                     <th>PROVINCE</th>
                 `;
 
                 if(data.length){
 
                     rows = data.map(d=>`
-
-                        <tr>
-
-                            <td>
-                                <input type='checkbox' class='rowCheck' data-id='${d.id}'>
-                            </td>
-
-                            <td>${d.name}</td>
-
-                            <td>
-                                <select class="province-dropdown" onchange="saveProvince(this, ${d.id})">
-
+                    <tr>
+                        <td><input type='checkbox' class='rowCheck' data-id='${d.id}'></td>
+                        <td>${d.name}</td>
+                        <td>${d.zip || ''}</td>
+                        <td>
+                            <select class="province-dropdown" onchange="saveProvince(this, ${d.id})">
                                 <option value="">Select Province</option>
-
                                 ${provinceData.map(p=>`
-                                <option value="${p.name}"
-                                ${d.province===p.name ? "selected" : ""}>
-                                ${p.name}
-                                </option>
+                                    <option value="${p.name}"
+                                    ${d.province===p.name ? "selected" : ""}>
+                                    ${p.name}
+                                    </option>
                                 `).join('')}
-
-                                </select>
-                            </td>
-
-                        </tr>
-
+                            </select>
+                        </td>
+                    </tr>
                     `).join('');
 
                 }else{
@@ -576,6 +614,7 @@ function updateRirafTable(){
                 headers += `
                     <th>Province</th>
                     <th>Post Office</th>
+                    <th>Zip Code</th>
                     <th>Deno</th>
                     <th>Stamp</th>
                     <th>Item</th>
@@ -586,6 +625,7 @@ function updateRirafTable(){
                         <td><input type='checkbox' class='rowCheck' data-id='${d.id}'></td>
                         <td>${d.province}</td>
                         <td>${d.post_office}</td>
+                        <td>${d.zip || ''}</td>
                         <td>${d.deno}</td>
                         <td>${d.stamp}</td>
                         <td>${d.item}</td>
@@ -668,41 +708,25 @@ content.innerHTML = `
                 <tr>
                     <th>Date</th>
                     <th>File Name</th>
+                    <th>Province</th>
+                    <th>Post Office</th>
                     <th>User</th>
-                    <th>Export</th>    
+                    <th>Export</th>
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td>4/16/2024</td>
-                    <td>Postage-Stamp_002</td>
-                    <td>Mike</td>
-                    <td>
-                        <button class="export-btn">
-                            <img src="images/export.png" class="export-icon">
-                            Export
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
+            <tbody></tbody>
 
         </table>
     </div>
 
-    <div class="scard-pagination">
-        <button>PREVIOUS</button>
-
-        <div class="scard-page-num">
-            <span class="active">1</span>
-        </div>
-
-        <button>NEXT</button>
-    </div>
-
 </div>
 `;
-    }
+
+loadStockCardAdmin(); // ✅ CALL HERE
+
+}
+
 
     else if(btn.textContent.includes("MERCHANDISE")){
 
@@ -729,7 +753,30 @@ content.innerHTML = `
 `;
 }
 }
+async function loadStockCardAdmin(){
 
+    const res = await fetch("db/load_stockcard_admin.php");
+    const data = await res.json();
+
+    const tbody = document.querySelector(".scard-table tbody");
+
+    tbody.innerHTML = data.map(d => `
+        <tr>
+            <td>${d.date}</td>
+            <td>${d.filename}</td>
+            <td>${d.province}</td>
+            <td>${d.post_office}</td>
+            <td>${d.created_by}</td>
+            <td>
+                <button class="export-btn">
+                    <img src="images/export.png" class="export-icon">
+                    Export
+                </button>
+            </td>
+        </tr>
+    `).join("");
+
+}
 function openMerchForm(){
     const formArea = document.getElementById("merch-form-area");
 
@@ -1331,6 +1378,48 @@ function toggleHistory(){
     }else{
         panel.style.display = "flex";
     }
+}
+
+function submitPostOffice(){
+
+    const name = document.getElementById("poName").value.trim();
+    const zip  = document.getElementById("poZip").value.trim();
+
+    if(!name || !zip){
+        alert("Fill all fields");
+        return;
+    }
+
+    fetch('db/add_riraf.php',{
+        method:'POST',
+        headers:{'Content-Type':'application/x-www-form-urlencoded'},
+        body:
+        'type=postoffice' +
+        '&name=' + encodeURIComponent(name) +
+        '&zip=' + encodeURIComponent(zip)
+    })
+    .then(res=>res.text())
+    .then(res=>{
+        if(res.trim()==="success"){
+
+            closePopup();
+
+            document.getElementById("rirafConfirm").style.display="flex";
+
+            document.getElementById("rirafAddMore").onclick = () => {
+                document.getElementById("rirafConfirm").style.display="none";
+                selectField("postoffice");
+            };
+
+            document.getElementById("rirafCancel").onclick = () => {
+                document.getElementById("rirafConfirm").style.display="none";
+                showRirafView();
+            };
+
+        }else{
+            alert(res);
+        }
+    });
 }
 
 </script>

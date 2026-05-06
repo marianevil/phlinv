@@ -1,6 +1,11 @@
 <?php
-// connection
+session_start();
 include 'connection.php';
+if(!isset($_SESSION['user'])){
+    die("User not logged in");
+}
+
+$created_by = $_SESSION['user'];
 
 // get POST values safely
 $province      = $conn->real_escape_string($_POST['province'] ?? '');
@@ -54,14 +59,16 @@ $next = $row['total'] + 1;
 $filename = $prefix . "-" . $inv_no;
 
 // insert into database
-$sql = "INSERT INTO riraf_records 
+$sql = "INSERT INTO riraf_records
 (filename, province, post_office, date, inv_no, weight, type_accounts,
 deno, quantity, weighted, kind_stamp, sheet, unit_cost, pieces,
-stamp_from, stamp_to, stamp_total, stamp_total_weighted, stamp_amount, stamp_total_words)
+stamp_from, stamp_to, stamp_total, stamp_total_weighted, stamp_amount, stamp_total_words,
+created_by)
 VALUES
 ('$filename','$province','$post_office','$date','$inv_no','$weight','$type_accounts',
 '$deno','$quantity','$weighted','$kind_stamp','$sheet','$unit_cost','$pieces',
-'$stamp_from','$stamp_to','$stamp_total','$stamp_total_weighted','$stamp_amount','$stamp_total_words')";
+'$stamp_from','$stamp_to','$stamp_total','$stamp_total_weighted','$stamp_amount','$stamp_total_words',
+'$created_by')";
 
 if($conn->query($sql)){
     header("Location: ../riraf.php");
