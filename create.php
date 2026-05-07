@@ -18,6 +18,12 @@ include 'header.php';
 <div class="create-header">
     <h2>RIRAF ENTRY DATA FORM</h2>
 </div>
+<!-- DELETE THIS DESCRIPTION LATER, FOR NOW JUST FOR REFERENCE -->
+<div class="card-desc">
+    <p>
+        This RIRAF Entry Data Form is used to encode records such as stamps, money orders, receipts, and other postal-related transactions.
+    </p>
+</div>
 
 <div class="create-card">
 
@@ -527,7 +533,7 @@ while($row = $query->fetch_assoc()){
 
 
 </form>
-
+    
 </div>
 
 </main>

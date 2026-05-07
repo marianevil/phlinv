@@ -61,13 +61,6 @@ $username = $_SESSION['user'];
                 </a>
             </li>
 
-            <li>
-                <a href="approve_requests.php">
-                    <img src="images/approve.png" class="side-icon">
-                    <span>APPROVE & RELEASE</span>
-                </a>
-            </li>
-
         </ul>
 
         <div class="sidebar-admin">

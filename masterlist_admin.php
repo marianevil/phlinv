@@ -5,6 +5,13 @@
     <div class="admin-ml-container">
 
         <div class="admin-ml-title">MASTER LIST DATA</div>
+        <div class="admin-ml-description">
+
+        
+    <p> 
+        DESCRIPTION: This section serves as the overall consolidated record of all the system activities including user additions, issuances and release for complete tracking and auditing.
+    </p> 
+</div>
 
         <!-- FILTER -->
         <div class="admin-ml-filter">

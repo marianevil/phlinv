@@ -23,39 +23,68 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : 'ADMIN';
     </div>
 
     <nav class="nav">
-        <span class="nav-hover"></span>
-        <a href="index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">HOME</a>
-        <a href="create.php" class="<?= ($current_page == 'create.php') ? 'active' : '' ?>">CREATE</a>
-        <a href="riraf.php" class="<?= ($current_page == 'riraf.php') ? 'active' : '' ?>">RIRAF</a>
-        <a href="stockcard.php" class="<?= ($current_page == 'stockcard.php') ? 'active' : '' ?>">STOCK CARD</a>
-        <a href="deno.php" class="<?= ($current_page == 'deno.php') ? 'active' : '' ?>">DENO</a>
-        <a href="masterlistdata.php" class="<?= ($current_page == 'masterlistdata.php') ? 'active' : '' ?>">MASTER LIST DATA</a>
-        <a href="request.php" class="<?= ($current_page == 'request.php') ? 'active' : '' ?>">REQUEST DISTRIBUTION</a>
+    <span class="nav-hover"></span>
 
-        <!-- Admin Dropdown (dynamic username) -->
-        <div class="dropdown">
-            <button class="dropbtn">
-                <!-- LEFT ICON -->
-                <svg class="admin-icon" width="16" height="16" viewBox="0 0 24 24">
-                    <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"
-                    fill="black"/>
-                </svg>
+    <a href="index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">
+        HOME
+    </a>
+        <!-- ✅ NEW MERCHANDISE -->
+    <a href="merchandise.php"
+       class="<?= ($current_page == 'merchandise.php') ? 'active' : '' ?>">
+        MERCHANDISE
+    </a>
 
-                <!-- DYNAMIC USERNAME (no design change) -->
-                <?php echo htmlspecialchars($username); ?>
+    <a href="create.php" class="<?= ($current_page == 'create.php') ? 'active' : '' ?>">
+        CREATE
+    </a>
 
-                <!-- RIGHT ARROW -->
-                <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6" fill="none" stroke="black" stroke-width="2"/>
-                </svg>
-            </button>
+    <a href="riraf.php" class="<?= ($current_page == 'riraf.php') ? 'active' : '' ?>">
+        RIRAF
+    </a>
 
-            <div class="dropdown-content">
-                <a href="logout.php">Logout</a>
-            </div>
+    <a href="stockcard.php" class="<?= ($current_page == 'stockcard.php') ? 'active' : '' ?>">
+        STOCK CARD
+    </a>
+
+    <a href="deno.php" class="<?= ($current_page == 'deno.php') ? 'active' : '' ?>">
+        DENO
+    </a>
+
+    <a href="masterlistdata.php"
+       class="<?= ($current_page == 'masterlistdata.php') ? 'active' : '' ?>">
+        MASTERLIST DATA
+    </a>
+
+    <!-- ADMIN DROPDOWN -->
+    <div class="dropdown">
+
+        <button class="dropbtn">
+
+            <!-- LEFT ICON -->
+            <svg class="admin-icon" width="16" height="16" viewBox="0 0 24 24">
+                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"
+                fill="black"/>
+            </svg>
+
+            <?php echo htmlspecialchars($username); ?>
+
+            <!-- RIGHT ARROW -->
+            <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24">
+                <path d="M6 9l6 6 6-6"
+                      fill="none"
+                      stroke="black"
+                      stroke-width="2"/>
+            </svg>
+
+        </button>
+
+        <div class="dropdown-content">
+            <a href="logout.php">Logout</a>
         </div>
 
-    </nav>
+    </div>
+
+</nav>
 </header>
 
 <script>

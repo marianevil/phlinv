@@ -4,6 +4,12 @@
 
 <div class="deno-title">DENO</div>
 
+<div class="card-desc">
+    <p>
+        This module is used for managing denomination (Deno) entries and records. It allows users to input transaction details such as post office, invoice number, weight, date, denomination type, and quantity. The right side displays a summary record of all saved deno transactions for monitoring and reference purposes.
+    </p>
+</div>
+
 <div class="deno-container">
 
     <!-- LEFT SIDE -->

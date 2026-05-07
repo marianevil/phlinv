@@ -16,6 +16,13 @@
     </div>
 </div>
 
+<!-- DELETE THIS DESCRIPTION LATER, FOR NOW JUST FOR REFERENCE -->   
+<div class="card-desc">
+    <p>
+        This Stock Card module displays summarized records from the RIRAF system. Unlike the RIRAF Entry Form, which captures detailed transactions (such as postage stamps, money orders, receipts, and other postal forms), this section provides a consolidated view per Type of Accounts. It helps users monitor and track summarized inventory and movement of records per province and post office.
+    </p>
+</div>
+
 <div class="stock-container">
 
     <!-- LEFT -->

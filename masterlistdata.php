@@ -58,6 +58,12 @@ while ($row = $query->fetch_assoc()) {
     MASTER LIST DATA
 </div>
 
+<!-- DELETE THIS DESCRIPTION LATER, FOR NOW JUST FOR REFERENCE -->
+<div class="card-desc">
+    <p>
+        This Master List module displays consolidated records generated from the RIRAF system. It serves as a summarized view of all transactions across provinces and post offices, including type of accounts, invoice numbers, and delivery details.
+</div>
+
 <div class="masterlist-card">
 
 <!-- FILTER -->

@@ -39,6 +39,12 @@ $query = $conn->query("
     <div class="riraf-table-header">
         <div class="riraf-top-left">RIRAF</div>
 
+        <!-- DELETE THIS DESCRIPTION LATER, FOR NOW JUST FOR REFERENCE -->
+        <div class="card-desc">
+            <p>
+                This section contains all inputs submitted by the user in the RIRAF Entry Form. It serves as a record of all transactions such as postage stamps, money orders, receipts, etc.
+            </p>
+        </div>
         <div class="riraf-search">
             <label for="dateSearch">Search Date:</label>
             <input type="date" id="dateSearch" placeholder="mm/dd/yyyy">
