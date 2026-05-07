@@ -16,6 +16,21 @@ if(isset($_SESSION['user'])){
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+/* CONTRIBUTORS TEXT */
+.credit-box{
+    position: fixed;
+    left: 70px;
+    top: 420px;
+    bottom: 20px;
+    text-align: left;
+    color: black;
+    font-size: 12px;
+    line-height: 1.0;
+    font-family: Arial, sans-serif;
+}
+</style>
+
 </head>
 
 <body class="login-page">
@@ -42,6 +57,20 @@ if(isset($_SESSION['user'])){
 
     </div>
 
+</div>
+
+<!-- CONTRIBUTORS -->
+<div class="credit-box">
+    <strong>System Developers</strong><br><br>
+
+    Mariane Jane C. Villasan<br>
+    <small>Front End / Back End Developer</small><br><br>
+
+    Rommel John L. Alegarbes<br>
+    <small>Back End / Database</small><br><br>
+
+    Diana C. Gape<br>
+    <small>UI/UX Design</small>
 </div>
 
 </body>
